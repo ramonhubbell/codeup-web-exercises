@@ -14,13 +14,33 @@
     <input name="redeem-miles" type="checkbox">Redeem Miles
     <br>
 
-    From<input type="text" name="email" placeholder="City or airport">
+    From<input type="text" name="traveling-from" placeholder="City or airport">
 
-    To<input type="text" name="email" placeholder="City or airport">
+    To<input type="text" name="traveing-to" placeholder="City or airport">
 
+    Number of passengers<select name="number_passengers">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
 
+    <br>
 
-    <input type="submit">
+    <label for="depart">Depart</label>
+
+    <input type="date" id="depart" name="depart-date">
+
+    <label for="return">Return</label>
+
+    <input type="date" id="return" name="return-date">
+
+    <br>
+    <button type="submit">Search</button>
 </form>
 
 </body>
