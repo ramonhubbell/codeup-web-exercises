@@ -1,4 +1,50 @@
 .fancy-header {
     color: purple;
     text-decoration: underline;
+    }
+
+h1{
+    text-align: center;
+    }
+
+h2{
+    color: red;
+    text-decoration: underline;
+}
+
+body{
+    background-image: url("https://pixabay.com/photos/water-sea-caribbean-background-1330252/");
+    }
+
+ul {
+    list-style: square;
+}
+
+body{
+    font-style: italic
+    }
+
+table{
+    font-size: 40px ;
+}
+
+td {
+    padding: 15px;
+    text-align: left;
+}
+
+a:link {
+    color:red;
+}
+
+a:visited {
+    color:black;
+}
+
+a:hover {
+    color:blue;
+}
+
+a:active {
+    color:green;
 }
