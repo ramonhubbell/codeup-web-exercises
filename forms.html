@@ -7,27 +7,38 @@
 <body>
 
 <form method="POST" action="https://request-inspector.glitch.me/">
-    <input type="text" name="email" placeholder="Email address">
+    <label for="email">Email: </label>
+    <input id="email" type="text" name="email" placeholder="Email address"><br>
 
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password">
+    <label for="password">Password: </label>
+    <input id="password" type="password" name="password">
     <br>
 
-    Bio:<textarea name="bio"></textarea>
+    <label for="bio">Bio: </label>
+    <textarea id=bio name="bio" cols="40" rows="10"></textarea>
 
     <h4>How did you hear about us?</h4>
-    <input type="radio" name="quiz_question_1" value="a">billboard<br>
-    <input type="radio" name="quiz_question_1" value="b">radio advertisement<br>
-    <input type="radio" name="quiz_question_1" value="c">internet advertisement<br>
-    <input type="radio" name="quiz_question_1" value="d">other<br>
+    <label>Billboard:
+        <input type="radio" name="source" value="billboard"></label>
+    <br>
+    <label>Radio advertisement"
+        <input type="radio" name="source" value="radio advertisement"></label>
+    <br>
+    <label for="internetad">Internet Advertisement
+        <input id=internetad type="radio" name="source" value="internetad"></label><br>
+    <label for="other">Other:
+        <input id="other" type="radio" name="souce" value="other"></label><br>
 
-    <label>What web browser are you using?</label>
-    <select name="browser_preference">
+    <label for="browser">What browser are you using?</label>
+
+    <select id="browser" name="browser_preference">
         <option value="chrome">Chrome</option>
         <option value="safari">Safari</option>
         <option value="firefox">Firefox</option>
     </select>
     <br>
+
+    <button type="submit">Register</button>
     <input type="submit">
 </form>
 </body>
