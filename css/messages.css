@@ -6,35 +6,31 @@ body, html {
     font-family: Arial, Ubuntu, sans-serif;
 }
 
+.message {
+    width: 90%;
+    padding: 10px;
+    margin: 10px auto;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+}
+
 .message-info {
     background-color: cornflowerblue;
-    padding: 7px;
-    border: 1px solid lightgray;
-    margin: 5px;
     color: darkblue;
 
 }
 
 .message-success {
     background-color: darkseagreen;
-    padding: 7px;
-    border: 1px; solid lightgrey;
-    margin: 5px;
     color: darkolivegreen;
 }
 
 .message-warning {
     background-color: lightyellow;
-    padding: 7px;
-    border: 1px solid lightgray;
-    margin: 5px;
     color: burlywood;
 }
 
 .message-error{
     background-color: pink;
-    padding: 7px;
-    border: 1px solid lightgray;
-    margin: 5px;
     color: brown;
 }
