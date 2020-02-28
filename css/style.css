@@ -1,9 +1,6 @@
 .fancy-header {
     color: purple;
     text-decoration: underline;
-    }
-
-h1{
     text-align: center;
     }
 
@@ -13,6 +10,8 @@ h2{
 }
 
 body{
+    background-size: 100% 100%;
+    background-color: darkseagreen;
     background-image: url("https://cdn.pixabay.com/photo/2016/04/15/04/02/water-1330252_1280.jpg");
     }
 
@@ -28,9 +27,9 @@ table{
     font-size: 40px ;
 }
 
-td {
+tr>td {
+    font-size: 30px
     padding: 15px;
-    text-align: left;
 }
 
 a:link {
