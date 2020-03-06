@@ -9,15 +9,61 @@
 <h1>JavaScript Morning Exercises</h1>
 
 <script>
-   favoriteFoods.sort();
-   console.log(favoriteFoods);
-   favoriteFoods.reverse();
-   console.log('Sort favorite foods in reverse alphabetical order', favoriteFoods);
-   var fruits = ['apple','orange','grapes'];
-   var concatenatedArrays = favoriteFoods.concat(fruits);
-   console.log(fruits);
-   favoriteFoods.concat(fruits);
+    //  Exercise 1
+    // On the line below, create a variable named onMarsRightNow and assign it the boolean value of false
+    var onMarsRightNow = false;
+    console.log(onMarsRightNow == false);
+    // console.log(onMarsRightNow == true);
 
+    // Exercise 2
+    // Create an array with the names of five of your favorite foods.
+    var favoriteFoods = ["Sushi", "Pizza", "Steak", "Pazole", "Tacos"];
+    console.log(favoriteFoods);
+
+    // Exercise 3
+    // Create an array of numbers from 1 to 10.
+    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    console.log(numbers);
+
+    // Exercise 4
+    // Add 1 item to the end of your favorite foods array.
+    favoriteFoods.push('Grilled Cheese');
+    console.log('Used push to add an item to the array.', favoriteFoods)
+
+    // Exercise 5
+    // Reverse the favorite foods array array.
+    favoriteFoods.reverse();
+    console.log('Reversed the favorite foods array.', favoriteFoods)
+
+    // Exercise 6
+    // Sort the favorite foods array in alphabetical order.
+    favoriteFoods.sort();
+    console.log('Sort favorite foods in alphabetical order', favoriteFoods);
+
+    // Exercise 7
+    // Sort the favorite foods array in reverse alphabetical order.
+    favoriteFoods.sort().reverse();
+    console.log('Sort favorite foods in reverse alphabetical order.', favoriteFoods);
+
+    // Exercise 8
+    // Create a new array of fruits and add that array to the end of your favorite foods array.
+    var fruits = ['banana', 'apples', 'apricots', 'grapes'];
+    var concatenatedArrays = favoriteFoods.concat(fruits);
+    console.log('Concatenate two arrays.', concatenatedArrays);
+
+    // Cannot use push to do this. :)
+    favoriteFoods.push(fruits);
+    console.log(favoriteFoods);
+
+    function sayHello(name) {
+        return "Hello " + name + "!";
+    }
+    console.log(sayHello('Douglas'));
+
+    function firstItem(array) {
+        return [0];
+    }
+    console.log('Return the first item of the array', firstItem(favoriteFoods));
 
 </script>
 </body>

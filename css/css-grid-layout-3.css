@@ -1,0 +1,92 @@
+* {
+    box-sizing: border-box;
+    font-size: small;
+    color: white;
+    font-size: x-large;
+}
+
+.wrapper {
+    display: flex;
+    grid-template-columns: ;
+    grid-template-rows: ;
+}
+
+.container {
+    display: grid;
+    height: 500px;
+    width: 900px;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 6px;
+    background-color: white;
+}
+
+.box-1 {
+    background-color: gold;
+    grid-column: 1 / span 8;
+    grid-row: 1 / span 1;
+    padding: .2em;
+}
+
+.box-2 {
+    background-color: gold;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 4;
+    padding: .2em;
+}
+
+.box-3 {
+    background-color: gold;
+    grid-column: 3 / span 2;
+    grid-row: 2 / span 1;
+    padding: .2em;
+}
+
+.box-4 {
+    background-color: gold;
+    grid-column: 5 / span 4;
+    grid-row: 2 / span 1;
+    padding: .2em;
+}
+
+.box-5 {
+    background-color: gold;
+    grid-column: 3 / span 4;
+    grid-row: 3 / span 1;
+    padding: .2em;
+}
+
+.box-6 {
+    background-color: gold;
+    grid-column: 7 / span 2;
+    grid-row: 3 / span 1;
+    padding: .2em;
+}
+
+.box-7 {
+    background-color: gold;
+    grid-column: 3 / span 2;
+    grid-row: 4 / span 1;
+    padding: .2em;
+}
+
+.box-8 {
+    background-color: gold;
+    grid-column: 5 / span 2;
+    grid-row: 4 / span 1;
+    padding: .2em;
+}
+
+.box-9 {
+    background-color: gold;
+    grid-column: 7 / span 2;
+    grid-row: 4 / span 1;
+    padding: .2em;
+}
+
+.box-10 {
+    background-color: gold;
+    grid-column: 3 / span 6;
+    grid-row: 5 / span 1;
+    padding: .2em;
+}

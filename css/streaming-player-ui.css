@@ -17,6 +17,7 @@ body {
     grid-template-columns: 1fr 400px 400px 400px 1fr;
     /* TODO: add a gap of 1em around all grid items
          */
+    grid-gap: 1em;
     /* no row properties are needed */
     /* TODO: the height of the wrapper should be 100 viewport height units */
     height: 100vh;
