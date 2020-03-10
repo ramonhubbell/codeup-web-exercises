@@ -65,6 +65,21 @@
     }
     console.log('Return the first item of the array', firstItem(favoriteFoods));
 
+    function checkType(aValue) {
+        return typeof aValue;
+    }
+    console.log('checkType(1) : ' + checkType(1));
+    console.log("checkType(checkType('Apex')" + checkType('Apex'));
+    console.log('checkType(true) : ' + checkType(true);
+
+    function checkTypes(anArray) {
+        for(var x = 0; x < anArray.length; x++) {
+        // console.log('x: '+x);
+        console.log( checkType(anArray[x]) );
+    }
+    }
+    checkTypes([2,'Fer',false]);
+
 </script>
 </body>
 </html>
