@@ -35,7 +35,7 @@ console.log(helloMessage);
  */
 
 var myName = "Ramon";
-console.log(sayHello(myName));
+console.log("var myName", sayHello(myName));
 
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
@@ -88,7 +88,7 @@ function calculateTip(percentage,total) {
      return percentage * total
 }
 
-console.log(calculateTip(0.20, 20));
+console.log("calculate(0.20, 20)" , calculateTip(0.20, 20));
 console.log(calculateTip(0.25, 25.50));
 console.log(calculateTip(0.15, 33.42));
 
