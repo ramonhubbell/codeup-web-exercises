@@ -16,14 +16,14 @@
  * Can you refactor your code to use functions?
  */
 
-var confirmQuestion = prompt("Would you like to enter a number?").toLowerCase();
+var confirmQuestion = confirm("Would you like to enter a number?").toLowerCase();
 
 
 if (confirmQuestion === "no") {
     alert("Thanks for your time! I hope to hear from you again soon.");
 } else if (confirmQuestion === "yes") {
     var confirmNumber = prompt("What is your number?");
-    
+    var parsedNumber = parseInt(confirmNumber)
 } else if (number === "string") {
     alert("This is not a number.")
 } else if (number %2 === 0) {
