@@ -16,28 +16,31 @@
  * Can you refactor your code to use functions?
  */
 
-var confirmQuestion = confirm("Would you like to enter a number?").toLowerCase();
+var confirmQuestion = confirm("Would you like to enter a number?");
 
-
-if (confirmQuestion === "no") {
-    alert("Thanks for your time! I hope to hear from you again soon.");
-} else if (confirmQuestion === "yes") {
-    var confirmNumber = prompt("What is your number?");
-    var parsedNumber = parseInt(confirmNumber)
-} else if (number === "string") {
-    alert("This is not a number.")
-} else if (number %2 === 0) {
-    alert("Your number is even!");
-} else if (number %2 === 1) {
-    alert("Your number is odd!");
-} else if (number + 100) {
-    alert("Your number plus 100 is: " + (number + 100));
-} else if (number > 0) {
-    alert("You number is positive!");
-} else if (number < 0) {
-    alert("Your number is negative!");
-} else {
-    alert("Your number was zero!");
+if (confirmQuestion) {
+    var parsedNumber = prompt("What is your number?");
+    if (isNaN(parsedNumber)) {
+        alert("You did not enter a number.");
+    } else {
+        if (parsedNumber % 2 === 0 && parsedNumber > 0) {
+            alert("Your number is even!");
+            alert("Your number plus 100 is: " + ((1 * (parsedNumber)) + 100));
+            alert("You number is positive!");
+        } else if (parsedNumber % 2 === 0 && parsedNumber < 0) {
+            alert("Your number is even!");
+            alert("Your number plus 100 is: " + ((1 * (parsedNumber)) + 100));
+            alert("Your number is negative!");
+        } else if (parsedNumber % 2 === 1 && parsedNumber > 0) {
+            alert("Your number is odd!");
+            alert("Your number plus 100 is: " + ((1 * (parsedNumber)) + 100));
+            alert("You number is positive!");
+        } else {
+            alert("Your number is odd!");
+            alert("Your number plus 100 is: " + ((1 * (parsedNumber)) + 100));
+            alert("You number is negative!");
+        }
+    }
 }
 
 // var userAge = 17;
@@ -97,8 +100,8 @@ if (confirmQuestion === "no") {
 // - `colors`: a list of the colors of the rainbow
 // - `randomColor`: contains a single random color value from the list (this
 //                  will contain a different color every time the page loads)
-var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-var randomColor = colors[Math.floor(Math.random() * colors.length)];
+// var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+// var randomColor = colors[Math.floor(Math.random() * colors.length)];
 /**
  * TODO:
  * Pass the `randomColor` variable to your function and console.log the results.
