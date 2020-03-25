@@ -1,26 +1,21 @@
 
-// function showMultiplicationTable(input) {
-//     console.log(input + " * 1" + " = " + (input * 1));
-// }
-//
-// showMultiplicationTable(7);
 
 
+// Anwers to exercise 2 in for loops.
 // function showMultiplicationTable(input) {
 // for (var i = 1; i <= 10; i++) {
-//     console.log(input + " * " + i + " = " + (input * i));
+//     console.log(input + " x " + i + " = " + (input * i));
 // }
 // }
 // showMultiplicationTable(7);
 
-// for (var i = 0; i < 10; i++) {
-//     console.log('for loop iteration #' + i);
-// }
 
 // This is how you get a random number between 50 and 100
 
 // This expression will generate a random number between 1 and 5
 // Math.floor(Math.random() * 200) + 20;
+
+// Anwers to exercise 3 in for loops.
 
 // for (var i = 1; i <= 10; i++) {
 //     var randomNumber = Math.floor(Math.random() * 180) + 20;
@@ -31,9 +26,11 @@
 // }
 // }
 
-// for (var i = 9; i <= 9; i++) {
+// for (var i = 1; i <= 9; i++) {
 //     console.log(i);
 //     }
+
+// Anwer to exercise 5 in for loops.
 
 for (var i = 100; i >= 5; i -= 5) {
     console.log("For loop counting down by 5: " + i);
