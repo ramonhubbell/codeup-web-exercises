@@ -26,14 +26,25 @@ console.log("Planets String Exercise.")
      * string, and <li> tags around each planet.
      */
 
-    // var planetsStringBreak = planetsArray.join("<br>");
-    // console.log(planetsStringBreak);
+    var planetsStringBreak = planetsArray.join("<br>");
+    console.log(planetsStringBreak);
+    document.write(planetsStringBreak);
 
 // Bonus
 
-    var unorderedPlanets1 = planetsString.unshift("<ul>");
+    // var unorderedPlanets1 = planetsString.unshift("<ul>");
 
     // console.log(planets.unshift("The Sun"));
     // console.log(planets);
+
+
+
+
+
+
+
+
+
+
 
 })();

@@ -3,33 +3,34 @@ console.log("Break and continue exercises");
 
 
 
+var userNumber = 0;
+
 do {
-    var oddNumber = prompt("Enter an odd number 1 through 50.");
-
-} while (oddNumber % 2 == 0);
-
-var oddNumber2 = console.log("Number to skip is: " + oddNumber);
-
-console.log("Here is an odd number: " + i);
-for(var i = 1; i <= 50; i += 2) {
-    if ((oddNumber2 = i) && (oddNumber2 % 2 !== 0)) {
-        console.log("Yikes! Skipping number: " + oddNumber2);
+    userNumber = Number(prompt("Please enter a number between 1 and 50."));
+    if (userNumber < 1 || userNumber > 50) {
+        alert(userNumber + " is not between 1 and 50. Please try again.");
+    } else if (userNumber % 2 === 0) {
+        alert(userNumber + " is not odd. Please try again.");
+    } else if (isNaN(userNumber)) {
+        alert(userNumber + " is not a number. Please try again.");
+    } else {
+        alert('Yay! You entered a valid number.');
+        break;
     }
-        // if (i % 2 !== 0) {
-    //     console.log("Here is an odd number: " + i);
-//         console.log("Yikes! Skipping number: " + oddNumber);
-//         break;
-//         continue;
-//     } if (i % 2 == 1) {
-//         // console.log("Here is an odd number: " + oddNumber);
-//     } if (oddNumber = i) {
-//         console.log("Yikes! Skipping number: " + oddNumber);
-//     } else {
-//         console.log("Here is an odd number: " + i);
-//     } if(oddNumber % 2 == 0 || oddNumber === true) {
-//         break;
+} while (true);
 
+console.log("Number to skip: " + userNumber);
+
+for(var i = 1; i <+ 50; i += 2) {
+
+    if (i === userNumber) {
+    console.log("Yikes! Skipping number: " + userNumber);
+        continue;
+
+    }
+console.log("Here is an odd number: " + i);
 }
+
 
 // var numberToStopAt = 5;
 //

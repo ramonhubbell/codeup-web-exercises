@@ -1,7 +1,7 @@
 
 
 
-// Anwers to exercise 2 in for loops.
+// Answer to exercise 2 in for loops.
 // function showMultiplicationTable(input) {
 // for (var i = 1; i <= 10; i++) {
 //     console.log(input + " x " + i + " = " + (input * i));
@@ -15,7 +15,7 @@
 // This expression will generate a random number between 1 and 5
 // Math.floor(Math.random() * 200) + 20;
 
-// Anwers to exercise 3 in for loops.
+// Answer to exercise 3 in for loops.
 
 // for (var i = 1; i <= 10; i++) {
 //     var randomNumber = Math.floor(Math.random() * 180) + 20;
@@ -26,12 +26,14 @@
 // }
 // }
 
-// for (var i = 1; i <= 9; i++) {
-//     console.log(i);
-//     }
+// Answer to exercise 4 in for loops.
 
-// Anwer to exercise 5 in for loops.
+for (var i = 1; i <= 9; i++) {
+    console.log(i.toString().repeat(i));
+    }
 
-for (var i = 100; i >= 5; i -= 5) {
-    console.log("For loop counting down by 5: " + i);
-}
+// Answer to exercise 5 in for loops.
+
+// for (var i = 100; i >= 5; i -= 5) {
+//     console.log("For loop counting down by 5: " + i);
+// }
