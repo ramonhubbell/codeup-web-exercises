@@ -14,6 +14,15 @@
 
 //TODO TOGETHER: Set map to Dallas area using the coordinates [-96.8057, 32.7787]
 
+mapboxgl.accessToken = mapboxToken;
+// var map = new mapboxgl.Map({
+//     container: 'map',
+//     style: 'mapbox://styles/mapbox/streets-v9',
+//     center: [-96.8057, 32.7787],
+//     zoom: 16
+//
+// });
+
 
 
 
@@ -33,13 +42,22 @@
 // TODO TOGETHER: Add a marker to the map using the following coordinates [-96.8084, 32.7799]. This marker will mark the Sixth Floor Muesume on our map.
 // TODO TOGETHER: Change the color of the marker
 
-
-
-
+// var markerOptions = {
+//     color: 'red',
+//     draggable: true
+// };
+// var marker = new mapboxgl.Marker(markerOptions)
+//     .setLngLat([-96.8057, 32.7787])
+//     .addTo(map);
+//
+// var markerMuseum = new mapboxgl.Marker(markerOptions)
+//     .setLngLat([-96.8084, 32.7799])
+//     .addTo(map);
 
 
 // TODO: Experiment with the color, and setting the LngLat
 // TODO: Update the marker object to make the marker draggable. *Hint: reference the docs!
+
 
 
 /**********************************************
@@ -51,10 +69,20 @@
 
 // TODO TOGETHER: Add a popup to the map over codeup. Set the html as a paragraph that says "Codeup Rocks!"
 
+// var popup = new mapboxgl.Popup()
+//     .setHTML("<h1>Codeup Rocks!</h1>")
+//     .addTo(map);
+//
+// marker.setPopup(popup);
 
 
+// TODO TOGETHER: Comment out the popup we just added. Add a popup to the Sixth Floor Museum marker.
 
-// TODO TOGETHER: Comment out the popup we just added. Add a popup to the Sixth Floor Musume marker.
+// var popupMuseum = new mapboxgl.Popup()
+//     .setHTML("<h1>Sixth Floor Museum</h1>")
+//     .addTo(map);
+//
+// markerMuseum.setPopup(popupMuseum);
 
 
 // TODO: Review the popup docs. What are some additional options we can pass to the popup?
@@ -70,7 +98,17 @@
 
 // TODO TOGETHER: Using the Geocoder helper function, log the coordinates of Codeup and recenter the map to focus on Codeup. Comment out previous map code.
 
-
+geocode("701 Commerce St. Dallas, TX. 75202", mapboxToken).then(function(result) {
+    console.log(result);
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: result,
+        zoom: 16
+    });
+   // map.setcenter({center: result});
+   map.jumpTo({center: result});
+});
 
 
 
@@ -81,7 +119,9 @@
 
 
 // TODO TOGETHER: Reverse Geocoding: Using the reverse geocoding method, enter the coordinates {lng: -96.8084, lat: 32.7799} to get a physical address for the Sixth Floor Musume
-
+reverseGeocode({lng: -96.8084, lat: 32.7799}, mapboxToken).then(function(result){
+    console.log('reverse code' + result);
+});
 
 
 // TODO: Reverse geocode coordinates of your choice using the reverse geocode method

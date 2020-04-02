@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Mapbox Lecture</title>
 
 
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js'></script>
@@ -11,16 +11,11 @@
 </head>
 <body>
 
-<div id='map' style='width: 400px; height: 300px;'></div>
-<script>
-    mapboxgl.accessToken = 'pk.eyJ1IjoicmFtb25odWJiZWxsIiwiYSI6ImNrOGl1Y2RyNDAwaGozZXBqdGMwMHBnYTUifQ.QxoBYuR05WFpLRTAm6-NkQ';
-    var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9'
-    });
-</script>
+<div id='map' style='width: 800px; height: 600px;'></div>
+
 
 <script src="js/keys.js"></script>
-<script src=" js/mapbox-api-lec.js"></script>
+<script src="js/mapbox-geocode-utils.js"></script>
+<script src="js/mapbox-api-lec.js"></script>
 </body>
 </html>
