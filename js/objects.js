@@ -16,9 +16,16 @@ console.log("Objects In Javascript.");
         firstName : "Rick",
         lastName : "Sanchez"
     };
-
     console.log(person.firstName);
     console.log(person.lastName);
+
+    // var person = {
+    //     firstName : "Rick",
+    //     lastName : "Sanchez"
+    // };
+    //
+    // console.log(person.firstName);
+    // console.log(person.lastName);
 
 
     /**
@@ -30,11 +37,18 @@ console.log("Objects In Javascript.");
      * Example
      * > console.log(person.sayHello()) // "Hello from Rick Sanchez!"
      */
-    person.sayHello = function() {
-        return ("Hello from " + person.firstName + " " + person.lastName);
+
+    person.sayHello = function () {
+        return "Hello from " + person.firstName + " " + person.lastName + "!";
     };
 
     console.log(person.sayHello());
+
+    // person.sayHello = function() {
+    //     return ("Hello from " + person.firstName + " " + person.lastName);
+    // };
+    //
+    // console.log(person.sayHello());
 
 
     /** TODO:
@@ -57,13 +71,25 @@ console.log("Objects In Javascript.");
         {name: 'George', amount: 320}
     ];
 
-    shoppers.forEach (function(shopper) {
-        if (shopper.amount < 200) {
-            console.log(shopper.name + " " + "Before discount: " + shopper.amount + " no discount. ");
+    shoppers.forEach(function(shopper,index) {
+        if (shopper.amount > 200) {
+            console.log(shopper.name + ', Amount before discount: $' + shopper.amount +
+                ', Discount: $' + (shopper.amount * 0.12) + ', Amount after discount: $' +
+                (shopper.amount * 0.88));
         } else {
-            console.log(shopper.name + " " + "Before discount: " + shopper.amount + ", " + "Discount amount: " + (shopper.amount * 0.12) + ", " + "After discount: " + (shopper.amount - (shopper.amount * 0.12)));
+            console.log(shopper.name + ', Amount before discount: $' + shopper.amount +
+                ', No discount.');
         }
     });
+
+    //
+    // shoppers.forEach (function(shopper) {
+    //     if (shopper.amount < 200) {
+    //         console.log(shopper.name + " " + "Before discount: " + shopper.amount + " no discount. ");
+    //     } else {
+    //         console.log(shopper.name + " " + "Before discount: " + shopper.amount + ", " + "Discount amount: " + (shopper.amount * 0.12) + ", " + "After discount: " + (shopper.amount - (shopper.amount * 0.12)));
+    //     }
+    // });
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
@@ -119,6 +145,7 @@ console.log("Objects In Javascript.");
     console.log(books[0].title);
     console.log(books[0].author.firstName);
     console.log(books[0].author.lastName);
+    console.log(books.reverse());
 
 
     /**
@@ -146,9 +173,17 @@ console.log("Objects In Javascript.");
      *      ...
      */
 
-    books.forEach(function(abook, index) {
-        console.log("Book # " + (index + 1) + ", Title: " + abook.title + ", " + "Author: " + abook.author.firstName + " " + abook.author.lastName);
+    books.forEach(function (book,index){
+        console.log('Book #' + (index + 1));
+        console.log('Title: ' + book.title);
+        console.log('Author: ' + book.author.firstName + " " + book.author.lastName);
+        console.log('---');
+
     });
+
+    // books.forEach(function(abook, index) {
+    //     console.log("Book # " + (index + 1) + ", Title: " + abook.title + ", " + "Author: " + abook.author.firstName + " " + abook.author.lastName);
+    // });
 
 
     /**
@@ -161,5 +196,32 @@ console.log("Objects In Javascript.");
      *   outputs the information described above. Refactor your loop to use your
      *   `showBookInfo` function.
      */
+
+    books.push(createBook("The Salmon of Doubt", "Douglas Adams"));
+    books.push(createBook("Walkaway", "Cory Doctorow"));
+    books.push(createBook("A Brief History of Time", "Stephen Hawking"));
+    books.push(createBook("Harry Potter", "JK Rowling"));
+
+    books.forEach(function (book, index) {
+    console.log("Book # " + (index + 1));
+    console.log(showBookInfo(book));
+    console.log("---");
+    });
+
+    function createBook( aTitle , authorName) {
+        var names = authorName.split(" ");
+        return {
+            title: aTitle,
+            author: {
+                firstName: names[0],
+                lastName: names[1]
+            }
+        };
+    }
+
+    function showBookInfo (book) {
+        console.log("Title: " + book.title);
+        console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+    }
 
 })();
