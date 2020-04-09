@@ -28,9 +28,24 @@
 
     // $("body");
 
-    // $(document).ready(function(){
-    //     alert("the page is ready");
-    // });
+    $(document).ready(function(){
+        alert("the page is ready");
+    $('h1').click(function() {
+        $('h1').css('background-color', 'red');
+    });
+
+    $('p').click(function() {
+       $('p').css('font-size', '18px');
+    });
+    var inHandler = function() {
+        $('li').css('background', 'red');
+    }
+    var outhandler = function () {
+        $('li').css('background', 'black');
+    }
+    $('li').hover(inHandler, outhandler);
+    });
+
 
      /*id selector exercise*/
 
