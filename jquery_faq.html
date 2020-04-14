@@ -42,6 +42,8 @@
 </head>
 <body>
 
+<h2 id="site-question">Would you like to register to our website?</h2>
+
 <div>
     <h1>Would you like to sign up for our newsletter?</h1><span id="x-button"> X </span>
 </div>
@@ -225,10 +227,19 @@
             $(this).next().children().slideToggle(2500);
         });
 
+        $('#site-question').hide();
+
+        setTimeout(function() {
+            $('#site-question').fadeIn(2000);
+        }, 8000);
+
+
     });
 
 
-
+    // setTimeout(function () {
+    //     alert('Here is a delayed hello!');
+    // }, delay);
 
     // $('h3').click(function(){
     //     //$(this).next().children().css('font-weight', 'bold');
