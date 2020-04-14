@@ -141,7 +141,7 @@
     $(document).ready(function() {
         console.log("this page is ready")
 
-        // Highlighted yellow the last li's when button is clicked.
+        // Last li is highlighted yellow when button is clicked.
 
         $('#yellow-bkg').click(function() {
              $('.yellow').last().css('background-color', 'yellow');
@@ -149,7 +149,7 @@
             $('.glacier').last().css('background-color', 'yellow');
         });
 
-        // Bolded text of all li's under clicked h3.
+        // Bolded all li text when parent h3 is clicked.
 
         $('#yellowstone').click(function(event) {
             event.preventDefault();
@@ -166,7 +166,7 @@
             $('.glacier-facts').toggleClass('bolded');
         });
 
-        // Turn first li of parent ul blue when any li under that parent is clicked.
+        // Blue text on first li when any li is clicked in that pertaining list
 
         $('.yellow').click(function() {
             $('.yellow').first().css('color', 'blue');
