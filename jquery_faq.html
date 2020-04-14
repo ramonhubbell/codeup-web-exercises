@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>JQuery Attributes</title>
     <style>
+
         .invisible {
             visibility: hidden;
         }
@@ -17,14 +18,56 @@
             cursor: pointer;
         }
 
+        h3 {
+            cursor: pointer;
+        }
 
+        .bolded {
+            font-weight: bold;
+        }
+
+        #yellow-bkg {
+            cursor: pointer;
+        }
+
+        li {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-<button id="toggle-theme">Visibility</button>
+<button id="yellow-bkg">Yellow Background for last li</button>
 
 <h2>10 Frequently Asked Questions About National Parks:</h2>
+<h3 id="yellowstone">Yellowstone</h3>
+    <ul class="yellowstone-facts">
+        <li class="yellow">The world's first national park</li>
+        <li class="yellow">2.2 million-acre park</li>
+        <li class="yellow">To avoid the crowds that often plague the park, plan to visit in April, May, September or October.</li>
+        <li class="yellow">Stretched from the northwest corner of Wyoming into the edges of Idaho and Montana, offering plenty of untouched
+        territory to explore.
+        </li>
+    </ul>
+
+<h3 id="yosemite">Yosemite</h3>
+    <ul class="yosemite-facts">
+        <li class="yosemite">California's most-visited national park</li>
+        <li class="yosemite">Features nearly 1,200 square miles of sheer awe.</li>
+        <li class="yosemite">You'll find the park's most famous landmarks – Half Dome and El Capitan.</li>
+        <li class="yosemite">Approximately 4 million people visit each year.</li>
+    </ul>
+
+<h3 id="glacier">Glacier National Park</h3>
+    <ul class="glacier-facts">
+        <li class="glacier">Spans three mountain ranges and includes more than 700 lakes across Montana.</li>
+        <li class="glacier">The park boasts more than 700 lakes, numerous waterfalls and two mountain ranges.</li>
+        <li class="glacier">Spreads across more than 1 million acres.</li>
+        <li class="glacier">The Going-to-the-Sun Road, is a scenic, 52-mile drive through the park. It is a National Historic Landmark and
+        an engineering marvel
+        that offers spectacular views,
+        </li>
+    </ul>
 
 <dl>
     <dt>Who is the director of the National Park Service?</dt>
@@ -98,23 +141,46 @@
     $(document).ready(function() {
         console.log("this page is ready")
 
+        // Highlighted yellow the last li's when button is clicked.
 
+        $('#yellow-bkg').click(function() {
+             $('.yellow').last().css('background-color', 'yellow');
+            $('.yosemite').last().css('background-color', 'yellow');
+            $('.glacier').last().css('background-color', 'yellow');
+        });
 
-        $('#toggle-theme').click(function(event) {
+        // Bolded text of all li's under clicked h3.
+
+        $('#yellowstone').click(function(event) {
             event.preventDefault();
-            $('dd').toggleClass('invisible');
-            if($('dd')[0].className  !== 'invisible'){
-                $(this).text('Hide definitions')
-            }else{
-                $(this).text('Show definitions')
-            }
+            $('.yellowstone-facts').toggleClass('bolded');
         });
 
-        $('dt').click(function(){
-            $(this).toggleClass('highlight');
+        $('#yosemite').click(function(event) {
+            event.preventDefault();
+            $('.yosemite-facts').toggleClass('bolded');
         });
 
+        $('#glacier').click(function (event) {
+            event.preventDefault();
+            $('.glacier-facts').toggleClass('bolded');
         });
+
+        // Turn first li of parent ul blue when any li under that parent is clicked.
+
+        $('.yellow').click(function() {
+            $('.yellow').first().css('color', 'blue');
+        });
+
+        $('.yosemite').click(function() {
+           $('.yosemite').first().css('color', 'blue');
+        });
+
+        $('.glacier').click(function() {
+           $('.glacier').first().css('color', 'blue');
+        });
+
+    });
 
 
 
