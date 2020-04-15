@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+</head>
+<body>
+<h1>Konami Code</h1>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<!--<script src="/js/jquery.js"></script>-->
+<script>
+    "use strict";
+
+    // $(document).ready(function(){
+    //         alert("the page is ready");
+    //
+    //         var konomiCode = [37, 37, 38, 38, 39, 40, 39, 40, 'a', 'b'];
+    //         var keys = [];
+    //
+    //     $(document).keyup(function(event){
+    //         console.log(event.keyCode);
+    //         keys.push(event.keyCode);
+    //         keys = keys.slice(-10);
+    //         console.log(keys);
+    //     });
+
+
+        var allowedKeys = {
+            37: 'left',
+            38: 'up',
+            39: 'right',
+            40: 'down',
+            65: 'a',
+            66: 'b'
+        };
+
+
+        var konamiCode = ['up', 'up', 'down', 'down', 'left', 'right', 'left', 'right', 'b', 'a'];
+
+        var konamiCodePosition = 0;
+
+        $(document).keyup(function(event) {
+
+            var key = allowedKeys[event.keyCode];
+
+            var requiredKey = konamiCode[konamiCodePosition];
+
+
+            if (key == requiredKey) {
+
+
+                konamiCodePosition++;
+
+                if (konamiCodePosition == konamiCode.length) {
+                    activateCheats();
+                    konamiCodePosition = 0;
+                }
+            } else {
+                konamiCodePosition = 0;
+            }
+        });
+
+        function activateCheats() {
+            document.body.style.backgroundImage = "url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg')"
+
+            alert("You have added 30 lives!");
+        }
+
+
+
+</script>
+</body>
+</html>
