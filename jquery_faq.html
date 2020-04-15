@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>JQuery Attributes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <style>
+
         .invisible {
             visibility: hidden;
         }
@@ -13,13 +16,13 @@
             font-weight: bolder;
         }
 
-        dt {
+        dt, h3, li, span {
             cursor: pointer;
         }
 
-        h3 {
-            cursor: pointer;
-        }
+        /*h3 {*/
+        /*    cursor: pointer;*/
+        /*}*/
 
         .bolded {
             font-weight: bold;
@@ -29,10 +32,10 @@
             cursor: pointer;
         }
 
-        li {
-            cursor: pointer;
-            /*visibility: hidden;*/
-        }
+        /*li {*/
+        /*    cursor: pointer;*/
+        /*    !*visibility: hidden;*!*/
+        /*}*/
 
         /*ul {*/
         /*    visibility: hidden;*/
@@ -41,6 +44,11 @@
     </style>
 </head>
 <body>
+
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+</div>
 
 <h2 id="site-question">Would you like to register to our website?</h2>
 
@@ -221,11 +229,15 @@
             $('div').hide();
         });
 
+        // Slide toggle li's under h3.
+
         $('li').hide();
 
         $('h3').click(function() {
-            $(this).next().children().slideToggle(2500);
+            $(this).next().children().slideToggle(1000);
         });
+
+        // h2 fades after 8 seconds on the page.
 
         $('#site-question').hide();
 
@@ -236,15 +248,6 @@
 
     });
 
-
-    // setTimeout(function () {
-    //     alert('Here is a delayed hello!');
-    // }, delay);
-
-    // $('h3').click(function(){
-    //     //$(this).next().children().css('font-weight', 'bold');
-    //     $(this).next().children().toggleClass('bold-font');
-    // });
 </script>
 </body>
 </html>
