@@ -41,21 +41,16 @@
 
     <br>
     <h2>Five Day Forecast In Dallas, TX</h2>
-    <table border="1">
-        <tbody id="weather-forecast">
-        </tbody>
-    </table>
-<!--        <tbody id="insertCurrentWeather">-->
-<!--        <tr>-->
-<!--            <td id="date"></td>-->
-<!--            <td id="temp"></td>-->
-<!--            <td id="description"></td>-->
-<!--            <td id="humidity"></td>-->
-<!--            <td id="speed"></td>-->
-<!--            <td id="pressure"></td>-->
-<!--        </tr>-->
+    <div id="weather-forecast" class="card-deck">
+
+    </div>
+<!--    <table border="1">-->
+<!--        <tbody id="weather-forecast">-->
 <!--        </tbody>-->
-    </table>
+<!--    </table>-->
+<!--    <main class="container">-->
+<!--        <div id="posts" class="card-deck"></div>-->
+<!--    </main>-->
 </main>
 <script src="js/keys.js"></script>
 <!--<script src="js/mapbox-geocode-utils.js"></script>-->
@@ -73,18 +68,12 @@
         var url = "https://api.openweathermap.org/data/2.5/weather?";
         var HTML = "";
 
-
-
-        // function getInfo () {
             $.get(url, {
                     "APPID": OWM_KEY,
                     "q": "Dallas",
                     "units": "imperial"
                 }
             ).done(function (data) {
-                // renderHTML(data);
-
-
 
                 $('#temp').html(data.main.temp + "<span>&#8457;</span>");
                 $('#description').text(data.weather[0].description);
@@ -101,27 +90,9 @@
             }).fail(function (error) {
                 console.error(error);
             });
-        // };
 
         var url = "https://api.openweathermap.org/data/2.5//forecast?";
         var HTML = "";
-
-        // getInfo();
-        //
-        // function renderHTML (weatherArray) {
-        //     // toolsArray.forEach(function (tool)
-        // weatherArray.forEach(function (info) {
-        //         HTML = "<tr>" +
-        //             "<td>" + info.main.temp + "</td>" +
-        //             "<td>" + info.weather[0].description + "</td>" +
-        //             "<td>" + info.main.humidity + "</td>" +
-        //             "<td>" + info.main.speed + "</td>" +
-        //             "<td>" + info.main.pressure + "</td>" +
-        //         "</tr>";
-        //         $('#insertCurrentWeather').append(HTML);
-        //     });
-        // };
-
 
         $.get(url, {
                 "APPID": OWM_KEY,
@@ -139,55 +110,22 @@
                 var timeArray = weatherList.dt_txt;
                 var dateOnly = (timeArray.split(' ')).shift();
 
-                generatedHTML = "<tr>" +
-                        "<td>" + dateOnly + "</td>" +
-                        "</tr>" +
-                        "<tr>" +
-                        "<td>"  + weatherList.main.temp_max + "<span>&#8457;</span>" + "</td>" +
-                        "</tr>" +
-                        "<tr>" +
-                        "<td>" + "Description: " + weatherList.weather[0].description + "</td>" +
-                        "</tr>" +
-                        "<tr>" +
-                        "<td>" + "Humidity: " + weatherList.main.humidity + "</td>" +
-                        "</tr>" +
-                        "<tr>" +
-                        "<td>" + "Wind: " + weatherList.wind.speed +  "</td>" +
-                        "</tr>" +
-                        "<tr>" +
-                        "<td>" + "Pressure: " + weatherList.main.pressure + "</td>" +
-                        "</tr>";
+                generatedHTML = "<div class='card' style='width: 18rem;'>" +
+                        "<div class='card-body'>" +
+                        "<div class='card-holder'>" + dateOnly + "</div>" +
+                        "<ul class='list-group list-group-flush'>" +
+                        "<li class='list-group-item'>"  + weatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
+                        "<li class='list-group-item'>" + "Description: " + weatherList.weather[0].description + "</li>" +
+                        "<li class='list-group-item'>" + "Humidity: " + weatherList.main.humidity + "</li>" +
+                        "<li class='list-group-item'>" + "Wind: " + weatherList.wind.speed + "</li>" +
+                        "<li class='list-group-item'>" + "Pressure: " + weatherList.main.pressure + "</li>" +
+                        "</ul>" +
+                        "</div>" +
+                        "</div>";
+
                 $('#weather-forecast').append(generatedHTML);
 
-
-
-                // album = lastFMResponse.topalbums.album[x];
-                // xlCover = album.image[3];
-                // generatedHTML = "<h1>"+album.name+"</h1>" +
-                //     "            <h2>"+album.artist.name+"</h2>" +
-                //     "            <img src='"+xlCover['#text']+"' alt=\"album cover\">";
-                // $("#albums").append(generatedHTML);
             }
-            // var weatherList = data.list[3];
-            // var timeArray = weatherList.dt_txt;
-            //
-            // $('#date-1').text((timeArray.split(' ')).shift());
-            // $('#temp-1').html(weatherList.main.temp_max + "<span>&#8457;</span>");
-            // $('#description-1').text(weatherList.weather[0].description);
-            // $('#humidity-1').text(weatherList.main.humidity);
-            // $('#speed-1').text(weatherList.wind.speed);
-            // $('#pressure-1').text(weatherList.main.pressure);
-            //
-            // var weatherList2 = data.list[11];
-            // var timeArray2 = weatherList2.dt_txt;
-            //
-            // $('#date-2').text((timeArray2.split(' ')).shift());
-            // $('#temp-2').html(weatherList2.main.temp_max + "<span>&#8457;</span>");
-            // $('#description-2').text(weatherList2.weather[0].description);
-            // $('#humidity-2').text(weatherList2.main.humidity);
-            // $('#speed-2').text(weatherList2.wind.speed);
-            // $('#pressure-2').text(weatherList2.main.pressure);
-
         }).fail(function (error) {
             console.error(error);
         });
