@@ -63,6 +63,15 @@
             .setLngLat([-96.798685, 32.781214])
             .addTo(map)
 
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            // coordinates.style.display = 'block';
+            // coordinates.innerHTML =
+            console.log(lngLat);
+               console.log( 'Longitude: ' + lngLat.lng + 'Latitude: ' + lngLat.lat);
+        }
+        marker.on('dragend', onDragEnd);
+
     </script>
 </main>
 

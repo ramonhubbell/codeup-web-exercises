@@ -1,6 +1,6 @@
 console.log('Map Box API Exercises.');
 
-mapboxgl.accessToken = mapboxToken;
+// mapboxgl.accessToken = MAP_KEY;
 // var map = new mapboxgl.Map({
 //         container: 'map',
 //         style: 'mapbox://styles/mapbox/streets-v9',
