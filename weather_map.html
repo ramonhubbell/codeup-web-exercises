@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Weather Map</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <!--    <script src='https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js'></script>-->
 <!--    <link href='https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css' rel='stylesheet' />-->
 <!--    <style>-->
@@ -12,41 +14,96 @@
 <!--    </style>-->
 </head>
 <body>
-
+<main class="container">
 <h1>Weather App</h1>
+    <br>
+<h2>Current Weather In Dallas, TX</h2>
 
 <table id="weather-current" border="1">
-    <thead>
+    <tbody>
     <tr>
-        <th>Temperatue</th>
-        <th>Description</th>
-        <th>Humidity</th>
-        <th>Wind</th>
-        <th>Pressure</th>
-    </tr>
-    </thead>
-    <tbody id="insertCurrentWeather">
-    <tr>
-
         <td id="temp"></td>
-        <td id="description"></td>
-        <td id="humidity"></td>
-        <td id="speed"></td>
-        <td id="pressure"></td>
-        </tr>
+    </tr>
+    <tr>
+        <td>Description: <span id="description"></span></td>
+    </tr>
+    <tr>
+        <td>Humidity: <span id="humidity"></span></td>
+    </tr>
+    <tr>
+        <td>Wind: <span id="speed"></td>
+    </tr>
+    <tr>
+        <td>Pressure: <span id="pressure"></td>
+    </tr>
     </tbody>
 </table>
 
+    <br>
+    <h2>Five Day Forecast In Dallas, TX</h2>
+    <table border="1">
+        <tbody id="weather-forecast">
+        </tbody>
+    </table>
+<!--        <tbody id="insertCurrentWeather">-->
+<!--        <tr>-->
+<!--            <td id="date"></td>-->
+<!--            <td id="temp"></td>-->
+<!--            <td id="description"></td>-->
+<!--            <td id="humidity"></td>-->
+<!--            <td id="speed"></td>-->
+<!--            <td id="pressure"></td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+    </table>
+</main>
 <script src="js/keys.js"></script>
 <!--<script src="js/mapbox-geocode-utils.js"></script>-->
 <!--<script src="js/mapbox_maps_api.js"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(function(){
         console.log('This page is ready.');
 
         var url = "https://api.openweathermap.org/data/2.5/weather?";
+        var HTML = "";
+
+
+
+        // function getInfo () {
+            $.get(url, {
+                    "APPID": OWM_KEY,
+                    "q": "Dallas",
+                    "units": "imperial"
+                }
+            ).done(function (data) {
+                // renderHTML(data);
+
+
+
+                $('#temp').html(data.main.temp + "<span>&#8457;</span>");
+                $('#description').text(data.weather[0].description);
+                $('#humidity').text(data.main.humidity);
+                $('#speed').text(data.wind.speed);
+                $('#pressure').text(data.main.pressure);
+                console.log(data);
+                console.log(data.main.temp);
+                console.log(data.weather[0].icon);
+                console.log(data.weather[0].description);
+                console.log(data.main.humidity);
+                console.log(data.wind.speed);
+                console.log(data.main.pressure);
+            }).fail(function (error) {
+                console.error(error);
+            });
+        // };
+
+        var url = "https://api.openweathermap.org/data/2.5//forecast?";
         var HTML = "";
 
         // getInfo();
@@ -65,47 +122,72 @@
         //     });
         // };
 
-        // function getInfo () {
-            $.get(url, {
-                    "APPID": OWM_KEY,
-                    "q": "Dallas",
-                    "units": "imperial"
-                }
-            ).done(function (data) {
-                // renderHTML(data);
-                $('#temp').html(data.main.temp + "<span>&#8457;</span>");
-                $('#description').text(data.weather[0].description);
-                $('#humidity').text(data.main.humidity);
-                $('#speed').text(data.wind.speed);
-                $('#pressure').text(data.main.pressure);
-                // console.log(data);
-                // console.log(data.main.temp);
-                // console.log(data.weather[0].icon);
-                // console.log(data.weather[0].description);
-                // console.log(data.main.humidity);
-                // console.log(data.wind.speed);
-                // console.log(data.main.pressure);
-            }).fail(function (error) {
-                console.error(error);
-            });
-        // };
-
-        var url = "https://api.openweathermap.org/data/2.5/forecast?";
-        var HTML = "";
 
         $.get(url, {
                 "APPID": OWM_KEY,
                 "q": "Dallas",
-                "units": "imperial"
+                "units": "imperial",
             }
         ).done(function (data) {
             console.log(data);
-            // console.log(data.main.temp);
-            // console.log(data.weather[0].icon);
-            // console.log(data.weather[0].description);
-            // console.log(data.main.humidity);
-            // console.log(data.wind.speed);
-            // console.log(data.main.pressure);
+
+            for (var x = 3; x < 40; x += 8) {
+                console.log('for loop iteration #' + x);
+                console.log(data.list[x]);
+
+                var weatherList = data.list[x];
+                var timeArray = weatherList.dt_txt;
+                var dateOnly = (timeArray.split(' ')).shift();
+
+                generatedHTML = "<tr>" +
+                        "<td>" + dateOnly + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>"  + weatherList.main.temp_max + "<span>&#8457;</span>" + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>" + "Description: " + weatherList.weather[0].description + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>" + "Humidity: " + weatherList.main.humidity + "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>" + "Wind: " + weatherList.wind.speed +  "</td>" +
+                        "</tr>" +
+                        "<tr>" +
+                        "<td>" + "Pressure: " + weatherList.main.pressure + "</td>" +
+                        "</tr>";
+                $('#weather-forecast').append(generatedHTML);
+
+
+
+                // album = lastFMResponse.topalbums.album[x];
+                // xlCover = album.image[3];
+                // generatedHTML = "<h1>"+album.name+"</h1>" +
+                //     "            <h2>"+album.artist.name+"</h2>" +
+                //     "            <img src='"+xlCover['#text']+"' alt=\"album cover\">";
+                // $("#albums").append(generatedHTML);
+            }
+            // var weatherList = data.list[3];
+            // var timeArray = weatherList.dt_txt;
+            //
+            // $('#date-1').text((timeArray.split(' ')).shift());
+            // $('#temp-1').html(weatherList.main.temp_max + "<span>&#8457;</span>");
+            // $('#description-1').text(weatherList.weather[0].description);
+            // $('#humidity-1').text(weatherList.main.humidity);
+            // $('#speed-1').text(weatherList.wind.speed);
+            // $('#pressure-1').text(weatherList.main.pressure);
+            //
+            // var weatherList2 = data.list[11];
+            // var timeArray2 = weatherList2.dt_txt;
+            //
+            // $('#date-2').text((timeArray2.split(' ')).shift());
+            // $('#temp-2').html(weatherList2.main.temp_max + "<span>&#8457;</span>");
+            // $('#description-2').text(weatherList2.weather[0].description);
+            // $('#humidity-2').text(weatherList2.main.humidity);
+            // $('#speed-2').text(weatherList2.wind.speed);
+            // $('#pressure-2').text(weatherList2.main.pressure);
+
         }).fail(function (error) {
             console.error(error);
         });
