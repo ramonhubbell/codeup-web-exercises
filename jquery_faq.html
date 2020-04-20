@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery Attributes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <style>
+
+        .invisible {
+            visibility: hidden;
+        }
+
+        .highlight {
+            background-color: yellow;
+            font-weight: bolder;
+        }
+
+        dt, h3, li, span {
+            cursor: pointer;
+        }
+
+
+       
+
+
+        .bolded {
+            font-weight: bold;
+        }
+ 
+
+        #yellow-bkg {
+            cursor: pointer;
+        }
+
+      
+
+
+        #yellow-bkg {
+            cursor: pointer;
+        }
+
+        li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Warning!</strong> Better check yourself, you're not looking too good.
+</div>
+
+<h2 id="site-question">Would you like to register to our website?</h2>
+
+<div>
+    <h1>Would you like to sign up for our newsletter?</h1><span id="x-button"> X </span>
+</div>
+
+<br>
+
+<button id="yellow-bkg">Yellow Background for last li</button>
+
+<h2>10 Frequently Asked Questions About National Parks:</h2>
+<h3 id="yellowstone">Yellowstone</h3>
+<ul class="yellowstone-facts">
+    <li class="yellow">The world's first national park</li>
+    <li class="yellow">2.2 million-acre park</li>
+    <li class="yellow">To avoid the crowds that often plague the park, plan to visit in April, May, September or October.</li>
+    <li class="yellow">Stretched from the northwest corner of Wyoming into the edges of Idaho and Montana, offering plenty of untouched
+        territory to explore.
+    </li>
+</ul>
+
+<h3 id="yosemite">Yosemite</h3>
+<ul class="yosemite-facts">
+    <li class="yosemite">California's most-visited national park</li>
+    <li class="yosemite">Features nearly 1,200 square miles of sheer awe.</li>
+    <li class="yosemite">You'll find the park's most famous landmarks – Half Dome and El Capitan.</li>
+    <li class="yosemite">Approximately 4 million people visit each year.</li>
+</ul>
+
+<h3 id="glacier">Glacier National Park</h3>
+<ul class="glacier-facts">
+    <li class="glacier">Spans three mountain ranges and includes more than 700 lakes across Montana.</li>
+    <li class="glacier">The park boasts more than 700 lakes, numerous waterfalls and two mountain ranges.</li>
+    <li class="glacier">Spreads across more than 1 million acres.</li>
+    <li class="glacier">The Going-to-the-Sun Road, is a scenic, 52-mile drive through the park. It is a National Historic Landmark and
+        an engineering marvel
+        that offers spectacular views,
+    </li>
+</ul>
+
+
+
+<button id="toggle-theme">Visibility</button>
+
+
+<h2>10 Frequently Asked Questions About National Parks:</h2>
+<h3 id="yellowstone">Yellowstone</h3>
+    <ul class="yellowstone-facts">
+        <li class="yellow">The world's first national park</li>
+        <li class="yellow">2.2 million-acre park</li>
+        <li class="yellow">To avoid the crowds that often plague the park, plan to visit in April, May, September or October.</li>
+        <li class="yellow">Stretched from the northwest corner of Wyoming into the edges of Idaho and Montana, offering plenty of untouched
+        territory to explore.
+        </li>
+    </ul>
+
+<h3 id="yosemite">Yosemite</h3>
+    <ul class="yosemite-facts">
+        <li class="yosemite">California's most-visited national park</li>
+        <li class="yosemite">Features nearly 1,200 square miles of sheer awe.</li>
+        <li class="yosemite">You'll find the park's most famous landmarks – Half Dome and El Capitan.</li>
+        <li class="yosemite">Approximately 4 million people visit each year.</li>
+    </ul>
+
+<h3 id="glacier">Glacier National Park</h3>
+    <ul class="glacier-facts">
+        <li class="glacier">Spans three mountain ranges and includes more than 700 lakes across Montana.</li>
+        <li class="glacier">The park boasts more than 700 lakes, numerous waterfalls and two mountain ranges.</li>
+        <li class="glacier">Spreads across more than 1 million acres.</li>
+        <li class="glacier">The Going-to-the-Sun Road, is a scenic, 52-mile drive through the park. It is a National Historic Landmark and
+        an engineering marvel
+        that offers spectacular views,
+        </li>
+    </ul>
+
+<dl>
+    <dt>Who is the director of the National Park Service?</dt>
+    <dd class="invisible">David Vela is the Deputy Director, exercising the authority of the
+        Director of the National Park Service. Learn more about past directors
+        of the National Park Service.</dd>
+
+    <dt>What government agency oversees the National Park Service?</dt>
+    <dd class="invisible">The National Park Service is a bureau of the Department of the Interior.
+        Directly overseeing its operation is the department's Assistant Secretary
+        for Fish, Wildlife and Parks.</dd>
+
+    <dt>How many employees are in the National Park Service?</dt>
+    <dd class="invisible">Permanent, temporary, and seasonal employees: More than 20,000.
+        Volunteers: More than 315,000 in 2017.</dd>
+
+    <dt>How old is the National Park System?</dt>
+    <dd class="invisible">The National Park Service was created by an act signed by President Woodrow
+        Wilson on August 25, 1916. Yellowstone National Park was established by an
+        act signed by President Ulysses S. Grant on March 1, 1872, as the nation's
+        first national park. View the National Park System timeline.</dd>
+
+    <dt>What is the origin of the National Park Service arrowhead?</dt>
+    <dd class="invisible">The arrowhead was authorized as the official National Park Service emblem
+        by the Secretary of the Interior on July 20, 1951. The components of the
+        arrowhead may have been inspired by key attributes of the National Park
+        System, with the sequoia tree and bison representing vegetation and wildlife,
+        the mountains and water representing scenic and recreational values, and the
+        arrowhead itself representing historical and archeological values. Read more
+        about the history of the arrowhead and other elements of NPS visual design.
+        The NPS allows limited use of the NPS arrowhead when doing so contributes
+        to our work. Learn how to request permission to use the arrowhead.</dd>
+
+    <dt>How many areas are in the National Park System?</dt>
+    <dd class="invisible">The system includes 419 areas covering more than 85 million acres in every state,
+        the District of Columbia, American Samoa, Guam, Puerto Rico, and the Virgin Islands.
+        These areas include national parks, monuments, battlefields, military parks,
+        historical parks, historic sites, lakeshores, seashores, recreation areas, scenic
+        rivers and trails, and the White House. Learn more about national park designations.
+        See the complete list of National Park Service units and affiliated areas by type and number.</dd>
+
+    <dt>What is the largest national park site? Smallest?</dt>
+    <dd class="invisible">Largest: Wrangell-St. Elias National Park and Preserve, AK, at 13.2 million acres
+        Smallest: Thaddeus Kosciuszko National Memorial, PA, at 0.02 acres
+        Current information on acreage for units across the National Park System is also available.</dd>
+
+    <dt>How many people visit the national parks?</dt>
+    <dd class="invisible">Total recreation visitors to the national parks in 2018: 318,211,833.</dd>
+
+    <dt>What is the National Park Service budget?</dt>
+    <dd class="invisible">Fiscal Year (FY) 2014 Enacted: $2.98 billion
+        FY 2015 Enacted: $2.615 billion
+        FY 2016 Enacted:$2.851 billion
+        FY 2017 Enacted: $2.932 billion</dd>
+
+    <dt>How do I obtain a park entrance pass?</dt>
+    <dd class="invisible">Fewer than one-third of the national parks charge entrance fees. You can obtain park
+        entrance passes by visiting a park site that charges an entrance fee. Entrance fee
+        sites have passes available; we recommend calling a park prior to your visit. (See
+        the park search to locate a specific park.) There are a number of entrance passes
+        available, including park-specific passes as well as passes that offer entrance to
+        more than 2,000 federal recreation sites in addition to the national parks (Annual,
+        Military, Senior, 4th Grade, Access, and Volunteer passes). Learn more about the America
+        the Beautiful - The National Parks and Federal Recreational Lands Pass.</dd>
+</dl>
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function() {
+        console.log("this page is ready")
+
+        // Last li is highlighted yellow when button is clicked.
+
+        $('#yellow-bkg').click(function() {
+             $('.yellow').last().css('background-color', 'yellow');
+            $('.yosemite').last().css('background-color', 'yellow');
+            $('.glacier').last().css('background-color', 'yellow');
+        });
+
+        // Bolded all li text when parent h3 is clicked.
+
+        $('#yellowstone').click(function(event) {
+            event.preventDefault();
+            $('.yellowstone-facts').toggleClass('bolded');
+        });
+
+        $('#yosemite').click(function(event) {
+            event.preventDefault();
+            $('.yosemite-facts').toggleClass('bolded');
+        });
+
+        $('#glacier').click(function (event) {
+            event.preventDefault();
+            $('.glacier-facts').toggleClass('bolded');
+        });
+
+
+
+
+    // Last li is highlighted yellow when button is clicked.
+
+    $('#yellow-bkg').click(function() {
+        $('.yellow').last().css('background-color', 'yellow');
+        $('.yosemite').last().css('background-color', 'yellow');
+        $('.glacier').last().css('background-color', 'yellow');
+    });
+
+    // Bolded all li text when parent h3 is clicked.
+
+    $('#yellowstone').click(function(event) {
+        event.preventDefault();
+        $('.yellowstone-facts').toggleClass('bolded');
+    });
+
+    $('#yosemite').click(function(event) {
+        event.preventDefault();
+        $('.yosemite-facts').toggleClass('bolded');
+    });
+
+    $('#glacier').click(function (event) {
+        event.preventDefault();
+        $('.glacier-facts').toggleClass('bolded');
+    });
+
+    // Blue text on first li when any li is clicked in that pertaining list
+
+    $('.yellow').click(function() {
+        $('.yellow').first().css('color', 'blue');
+    });
+
+    $('.yosemite').click(function() {
+        $('.yosemite').first().css('color', 'blue');
+    });
+
+    $('.glacier').click(function() {
+        $('.glacier').first().css('color', 'blue');
+    });
+
+        $('#x-button').click(function() {
+            $('div').hide();
+        });
+
+        // Slide toggle li's under h3.
+
+        $('li').hide();
+
+        $('h3').click(function() {
+            $(this).next().children().slideToggle(1000);
+        });
+
+        // h2 fades after 8 seconds on the page.
+
+        $('#site-question').hide();
+
+        setTimeout(function() {
+            $('#site-question').fadeIn(2000);
+        }, 8000);
+
+        // Blue text on first li when any li is clicked in that pertaining list
+
+        $('.yellow').click(function() {
+            $('.yellow').first().css('color', 'blue');
+        });
+
+        $('.yosemite').click(function() {
+           $('.yosemite').first().css('color', 'blue');
+        });
+
+        $('.glacier').click(function() {
+           $('.glacier').first().css('color', 'blue');
+        });
+
+   
+
+
+
+    });
+
+</script>
+</body>
+</html>
