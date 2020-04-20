@@ -13,13 +13,13 @@
 <div>
     <ul class="myList">
         <li id="firstItem">This list</li>
-        <li>is bulleted</li>
+        <li class="codeup">is bulleted</li>
     </ul>
 </div>
 <div>
     <p class="codeup">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam animi architecto atque eaque enim excepturi expedita</p>
 </div>
-<h2 class="codeup">Some Text</h2>
+<h2>Some Text</h2>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
@@ -28,35 +28,28 @@
 
     // $("body");
 
-    // $(document).ready(function(){
-    //     alert("the page is ready");
-    // });
+    $(document).ready(function(){
+        console.log("the page is ready");
 
-     /*id selector exercise*/
+    /*id selector exercise*/
 
-    // $('#myParagraph').html();
-    // console.log( $('#myParagraph').html());
+    // alert($('#myParagraph').html());
     //
-    // $('#firstItem').html();
-    // console.log($('#firstItem').html());
+    // alert($('#firstItem').html());
 
     /*class selectors exercise*/
 
     // $('.codeup').css('border', '1px solid red');
 
-    // $('li').css('font-size', '20px');
-
     /*element selectors exercise*/
-    //
-    // $('h1').css('background-color' , 'yellow');
-    // $('p').css('background-color' , 'yellow');
-    // $('li').css('background-color' , 'yellow');
-    // $('h1').html();
-    // console.log('h1 jquery' , $('h1').html());
 
-    /*multiple selectors*/
+    $('li').css('font-size', '20px');
 
-    // $('h1, p, li').css('background-color', 'yellow');
+    $('h1, p, li').css('background-color', 'yellow');
+
+    alert($('h1').html());
+
+    });
 
 
 
