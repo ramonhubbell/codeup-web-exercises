@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<h1 class="codeup">My jQuery Exercise</h1>
+<h1 class="main-header">My jQuery Exercise</h1>
 <div>
     <p id="myParagraph">This is a paragraph.</p>
 </div>
@@ -19,7 +19,7 @@
 <div>
     <p class="codeup">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam animi architecto atque eaque enim excepturi expedita</p>
 </div>
-<h2>Some Text</h2>
+<h2 class="codeup">Some Text</h2>
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
@@ -43,13 +43,30 @@
 
     /*element selectors exercise*/
 
-    $('li').css('font-size', '20px');
+    // $('li').css('font-size', '20px');
+    //
+    // $('h1, p, li').css('background-color', 'yellow');
+    //
+    // alert($('h1').html());
 
-    $('h1, p, li').css('background-color', 'yellow');
+    // $('#main-header').click(function (){
+    //     $(this).css('background-color', 'teal');
 
-    alert($('h1').html());
-
+    $('p').dblclick(function() {
+        $(this).css('font-size', '18px');
     });
+
+    $('li').hover(
+        function () {
+            $(this).css('color', 'red');
+        },
+        function () {
+            $(this).css('color', 'black');
+        }
+    );
+    });
+
+
 
 
 
