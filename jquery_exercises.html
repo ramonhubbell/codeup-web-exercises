@@ -6,14 +6,14 @@
 </head>
 <body>
 
-<h1 class="codeup">My jQuery Exercise</h1>
+<h1 class="main-header">My jQuery Exercise</h1>
 <div>
     <p id="myParagraph">This is a paragraph.</p>
 </div>
 <div>
     <ul class="myList">
         <li id="firstItem">This list</li>
-        <li>is bulleted</li>
+        <li class="codeup">is bulleted</li>
     </ul>
 </div>
 <div>
@@ -29,49 +29,44 @@
     // $("body");
 
     $(document).ready(function(){
-        alert("the page is ready");
-    $('h1').click(function() {
-        $('h1').css('background-color', 'red');
-    });
+        console.log("the page is ready");
 
-    $('p').click(function() {
-       $('p').css('font-size', '18px');
-    });
-    var inHandler = function() {
-        $('li').css('background', 'red');
-    }
-    var outhandler = function () {
-        $('li').css('background', 'black');
-    }
-    $('li').hover(inHandler, outhandler);
-    });
+    /*id selector exercise*/
 
-
-     /*id selector exercise*/
-
-    // $('#myParagraph').html();
-    // console.log( $('#myParagraph').html());
+    // alert($('#myParagraph').html());
     //
-    // $('#firstItem').html();
-    // console.log($('#firstItem').html());
+    // alert($('#firstItem').html());
 
     /*class selectors exercise*/
 
     // $('.codeup').css('border', '1px solid red');
 
-    // $('li').css('font-size', '20px');
-
     /*element selectors exercise*/
+
+    // $('li').css('font-size', '20px');
     //
-    // $('h1').css('background-color' , 'yellow');
-    // $('p').css('background-color' , 'yellow');
-    // $('li').css('background-color' , 'yellow');
-    // $('h1').html();
-    // console.log('h1 jquery' , $('h1').html());
-
-    /*multiple selectors*/
-
     // $('h1, p, li').css('background-color', 'yellow');
+    //
+    // alert($('h1').html());
+
+    // $('#main-header').click(function (){
+    //     $(this).css('background-color', 'teal');
+
+    $('p').dblclick(function() {
+        $(this).css('font-size', '18px');
+    });
+
+    $('li').hover(
+        function () {
+            $(this).css('color', 'red');
+        },
+        function () {
+            $(this).css('color', 'black');
+        }
+    );
+    });
+
+
 
 
 
