@@ -41,16 +41,23 @@ const users = [
 const name = 'your_name_here';
 const email = '';
 const languages = [];
-var name = 'ramon';
-console.log(name);
-var email = 'ramon@mail.com';
-var languages = ['english', 'some other language']
+// var name = 'ramon';
+// console.log(name);
+// var email = 'ramon@mail.com';
+// var languages = ['english', 'some other language']
 
 // TODO: rewrite the object literal using object property shorthand
+// users.push({
+//   name: name,
+//   email: email,
+//   languages: languages
+// });
+// Rewrite with object property shorthand.
+
 users.push({
-  name: name,
-  email: email,
-  languages: languages
+  name,
+  email,
+  languages
 });
 
 // TODO: replace `var` with `let` in the following variable declarations
