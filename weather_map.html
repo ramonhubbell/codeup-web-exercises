@@ -47,6 +47,10 @@
     <div id="weather-forecast" class="card-deck">
     </div>
     <br>
+    <h2>Five Day Forecast</h2>
+    <div id="coordinate-forecast" class="card-deck">
+    </div>
+    <br>
     <div id='map' style='width: 1100px; height: 900px;'></div>
     <script>
         mapboxgl.accessToken = MAP_KEY;
@@ -68,7 +72,7 @@
             // coordinates.style.display = 'block';
             // coordinates.innerHTML =
             console.log(lngLat);
-               console.log( 'Longitude: ' + lngLat.lng + 'Latitude: ' + lngLat.lat);
+               console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
         }
         marker.on('dragend', onDragEnd);
 
@@ -112,6 +116,8 @@
                 console.error(error);
             });
 
+     // 5-day forecast or Dallas, TX
+
         var url = "https://api.openweathermap.org/data/2.5//forecast?";
         var HTML = "";
 
@@ -149,6 +155,56 @@
             }
         }).fail(function (error) {
             console.error(error);
+        });
+
+        // 5-day forecast from any coordinates
+
+        var url = "https://api.openweathermap.org/data/2.5//forecast?";
+        var HTML = "";
+
+        // lat="+x+"&lon="+y+"
+
+        var lati = lngLat.lng;
+        console.log(lati);
+        var long = lngLat.lng;
+
+        $('#map').mouseup(function () {
+
+            $.get(url, {
+                "APPID": OWM_KEY,
+                "lat": "lati",
+                "lon": "long" ,
+                "units": "imperial",
+            }).done(function (data) {
+            console.log(data);
+
+            for (var x = 3; x < 40; x += 8) {
+                console.log('for loop iteration #' + x);
+                console.log(data.list[x]);
+
+                var coordWeatherList = data.list[x];
+                var coordTimeArray = coordWeatherList.dt_txt;
+                var coordDateOnly = (timeArray.split(' ')).shift();
+
+                coordinateHTML = "<div class='card' style='width: 18rem;'>" +
+                    "<div class='card-body'>" +
+                    "<div class='card-holder'>" + coordDateOnly + "</div>" +
+                    "<ul class='list-group list-group-flush'>" +
+                    "<li class='list-group-item'>"  + coordWeatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
+                    "<li class='list-group-item'>" + "Description: " + coordWeatherList.weather[0].description + "</li>" +
+                    "<li class='list-group-item'>" + "Humidity: " + coordWeatherList.main.humidity + "</li>" +
+                    "<li class='list-group-item'>" + "Wind: " + coordWeatherList.wind.speed + "</li>" +
+                    "<li class='list-group-item'>" + "Pressure: " + coordWeatherList.main.pressure + "</li>" +
+                    "</ul>" +
+                    "</div>" +
+                    "</div>";
+
+                $('#coordinate-forecast').append(coordinateHTML);
+
+            }
+            }).fail(function (error) {
+            console.error(error);
+            });
         });
 
     });
