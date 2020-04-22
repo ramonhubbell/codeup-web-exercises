@@ -159,21 +159,21 @@
 
         // 5-day forecast from any coordinates
 
-        var url = "https://api.openweathermap.org/data/2.5//forecast?";
-        var HTML = "";
+        var coordinateUrl = "https://api.openweathermap.org/data/2.5//forecast?";
+        var coordinateHTML = "";
 
         // lat="+x+"&lon="+y+"
 
-        var lati = lngLat.lng;
-        console.log(lati);
-        var long = lngLat.lng;
+        // var lati = lngLat.lng;
+        // console.log(lati);
+        // var long = lngLat.lng;
 
-        $('#map').mouseup(function () {
+        // $('#map').mouseup(function () {
 
-            $.get(url, {
+            $.get(coordinateUrl, {
                 "APPID": OWM_KEY,
-                "lat": "lati",
-                "lon": "long" ,
+                "lat": 32.778266573249525,
+                "lon": -96.79335460874654,
                 "units": "imperial",
             }).done(function (data) {
             console.log(data);
@@ -184,7 +184,7 @@
 
                 var coordWeatherList = data.list[x];
                 var coordTimeArray = coordWeatherList.dt_txt;
-                var coordDateOnly = (timeArray.split(' ')).shift();
+                var coordDateOnly = (coordTimeArray.split(' ')).shift();
 
                 coordinateHTML = "<div class='card' style='width: 18rem;'>" +
                     "<div class='card-body'>" +
@@ -205,7 +205,7 @@
             }).fail(function (error) {
             console.error(error);
             });
-        });
+        // });
 
     });
 </script>
