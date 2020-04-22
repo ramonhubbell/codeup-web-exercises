@@ -67,14 +67,14 @@
             .setLngLat([-96.798685, 32.781214])
             .addTo(map)
 
-        function onDragEnd() {
-            var lngLat = marker.getLngLat();
-            // coordinates.style.display = 'block';
-            // coordinates.innerHTML =
-            console.log(lngLat);
-               console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
-        }
-        marker.on('dragend', onDragEnd);
+        // function onDragEnd() {
+        //     var lngLat = marker.getLngLat();
+        //     // coordinates.style.display = 'block';
+        //     // coordinates.innerHTML =
+        //     console.log(lngLat);
+        //        console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
+        // }
+        // marker.on('dragend', onDragEnd);
 
     </script>
 </main>
@@ -159,21 +159,30 @@
 
         // 5-day forecast from any coordinates
 
+        function onDragEnd() {
+            var lngLat = marker.getLngLat();
+            // coordinates.style.display = 'block';
+            // coordinates.innerHTML =
+            console.log(lngLat);
+            console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
+        }
+        marker.on('dragend', onDragEnd);
+
         var coordinateUrl = "https://api.openweathermap.org/data/2.5//forecast?";
         var coordinateHTML = "";
 
         // lat="+x+"&lon="+y+"
 
-        // var lati = lngLat.lng;
-        // console.log(lati);
-        // var long = lngLat.lng;
+        var lati = lngLat.lng;
+        console.log(lati);
+        var long = lngLat.lng;
 
         // $('#map').mouseup(function () {
 
             $.get(coordinateUrl, {
                 "APPID": OWM_KEY,
-                "lat": 32.778266573249525,
-                "lon": -96.79335460874654,
+                "lat": "+lati+",
+                "lon": "+long+",
                 "units": "imperial",
             }).done(function (data) {
             console.log(data);
