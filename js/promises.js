@@ -21,16 +21,19 @@ console.log('page is ready');
 // /users/:username/events/public
 
 function userCommitDate (username) {
-    let url = `https://api.github.com/users/${username}/events/public`;
-    return fetch (url, {headers: {'Authorization': `token ${GIT_KEY}`}})
-        .then(response => response.json()
-            .then( users => {
-                users.forEach( userObj => {
-                    console.log(userObj.login);
+    let url = `https://api.github.com/users/${username}/events`;
+    fetch (url, {headers: {'Authorization':`token ${GIT_KEY}`}})
+        .then(response => {
+            return response.json().then(users => {
+                    console.log(users);
+                    // users.forEach( userObj => {
+                    //     console.log(userObj.login);
+                    // })
                 })
-            })
-        )
+        })
 }
+console.log(GIT_KEY);
+userCommitDate('ramonhubbell');
 // const url = `https://api.github.com/users/${username}/events/public`;
 // const userCommit = fetch (url, {headers: {'Authorization': `token ${GIT_KEY}`}});
 // userCommit
