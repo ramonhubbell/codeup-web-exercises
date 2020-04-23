@@ -47,9 +47,17 @@ var atLeast3Languages = users.filter(function(name){
 
 console.log('atLeast3Languages ' , atLeast3Languages);
 
-// var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-//
-// var evens = numbers.filter(function(n) {
-//     return n % 2 === 0;
+// Exercise 3: Use .map to create an array of strings where each element
+// is a user's email address.
+
+var userEmails = users.map(function(address) {
+    return address.email;
+});
+
+console.log('userEmails ' , userEmails);
+
+// var incremented = numbers.map(function(n) {
+//     return n + 1;
 // });
-// console.log(evens); // [2, 4, 6, 8, 10]
+// console.log(incremented); // [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
