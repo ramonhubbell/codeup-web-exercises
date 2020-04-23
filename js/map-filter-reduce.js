@@ -56,8 +56,20 @@ var userEmails = users.map(function(address) {
 
 console.log('userEmails ' , userEmails);
 
-// var incremented = numbers.map(function(n) {
-//     return n + 1;
-// });
-// console.log(incremented); // [2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+// Exercise 4: Use .reduce to get the total years of experience from the list of
+// users. Once you get the total of years you can use the result to
+// calculate the average.
+
+var totalYearsExperience = users.reduce((acc, currYear) => {
+    return (acc + currYear.yearsOfExperience);
+}, 0);
+
+console.log('totalYearsExperience ' , totalYearsExperience);
+console.log('average years of experience ' , totalYearsExperience/users.length);
+
+// const numbers = [1, 2, 3, 4, 5];
+//
+// const sum = numbers.reduce((accumulation, currentNumber) => {
+//     return accumulation + currentNumber;
+// }, 0);
 
