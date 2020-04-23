@@ -67,9 +67,19 @@ var totalYearsExperience = users.reduce((acc, currYear) => {
 console.log('totalYearsExperience ' , totalYearsExperience);
 console.log('average years of experience ' , totalYearsExperience/users.length);
 
-// const numbers = [1, 2, 3, 4, 5];
-//
-// const sum = numbers.reduce((accumulation, currentNumber) => {
-//     return accumulation + currentNumber;
-// }, 0);
+// Exercise 5: Use .reduce to get the longest email from the list of users.
 
+console.log(userEmails);
+console.log(users[0].email.length);
+var longestEmail = userEmails.reduce((longest, currEmail) => {
+    if (currEmail.length > longest.length) {
+        return currEmail;
+    } else {
+        return longest;
+    }
+    }, '');
+
+console.log(longestEmail);
+
+// ["ryan@codeup.com", "luis@codeup.com", "zach@codeup.com",
+//     "fernando@codeup.com", "justin@codeup.com"]
