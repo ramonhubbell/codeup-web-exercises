@@ -158,62 +158,67 @@
         });
 
         // 5-day forecast from any coordinates
-
+        var lngLat;
         function onDragEnd() {
-            var lngLat = marker.getLngLat();
-            // coordinates.style.display = 'block';
-            // coordinates.innerHTML =
+
+            lngLat = marker.getLngLat();
+
             console.log(lngLat);
             console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
+            getForecastByCoord(lngLat.lat, lngLat.lng);
         }
         marker.on('dragend', onDragEnd);
 
-        var coordinateUrl = "https://api.openweathermap.org/data/2.5//forecast?";
+        var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?";
+
         var coordinateHTML = "";
 
-        // lat="+x+"&lon="+y+"
 
-        var lati = lngLat.lng;
-        console.log(lati);
-        var long = lngLat.lng;
-
-        // $('#map').mouseup(function () {
-
+        function getForecastByCoord (latitude, longitude) {
+            console.log(latitude);
+            console.log(longitude);
             $.get(coordinateUrl, {
                 "APPID": OWM_KEY,
-                "lat": "+lati+",
-                "lon": "+long+",
+                "lat": latitude,
+                "lon": longitude,
                 "units": "imperial",
             }).done(function (data) {
-            console.log(data);
+                console.log(data);
 
-            for (var x = 3; x < 40; x += 8) {
-                console.log('for loop iteration #' + x);
-                console.log(data.list[x]);
+                $('#coordinate-forecast').empty();
 
-                var coordWeatherList = data.list[x];
-                var coordTimeArray = coordWeatherList.dt_txt;
-                var coordDateOnly = (coordTimeArray.split(' ')).shift();
+                for (var x = 3; x < 40; x += 8) {
+                    console.log('for loop iteration #' + x);
+                    console.log(data.list[x]);
 
-                coordinateHTML = "<div class='card' style='width: 18rem;'>" +
-                    "<div class='card-body'>" +
-                    "<div class='card-holder'>" + coordDateOnly + "</div>" +
-                    "<ul class='list-group list-group-flush'>" +
-                    "<li class='list-group-item'>"  + coordWeatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
-                    "<li class='list-group-item'>" + "Description: " + coordWeatherList.weather[0].description + "</li>" +
-                    "<li class='list-group-item'>" + "Humidity: " + coordWeatherList.main.humidity + "</li>" +
-                    "<li class='list-group-item'>" + "Wind: " + coordWeatherList.wind.speed + "</li>" +
-                    "<li class='list-group-item'>" + "Pressure: " + coordWeatherList.main.pressure + "</li>" +
-                    "</ul>" +
-                    "</div>" +
-                    "</div>";
+                    var coordWeatherList = data.list[x];
+                    var coordTimeArray = coordWeatherList.dt_txt;
+                    var coordDateOnly = (coordTimeArray.split(' ')).shift();
 
-                $('#coordinate-forecast').append(coordinateHTML);
 
-            }
+                    coordinateHTML = "<div class='card' style='width: 18rem;'>" +
+                        "<div class='card-body'>" +
+                        "<div class='card-holder'>" + coordDateOnly + "</div>" +
+                        "<ul class='list-group list-group-flush'>" +
+                        "<li class='list-group-item'>" + coordWeatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
+                        "<li class='list-group-item'>" + "Description: " + coordWeatherList.weather[0].description + "</li>" +
+                        "<li class='list-group-item'>" + "Humidity: " + coordWeatherList.main.humidity + "</li>" +
+                        "<li class='list-group-item'>" + "Wind: " + coordWeatherList.wind.speed + "</li>" +
+                        "<li class='list-group-item'>" + "Pressure: " + coordWeatherList.main.pressure + "</li>" +
+                        "</ul>" +
+                        "</div>" +
+                        "</div>";
+
+                    $('#coordinate-forecast').append(coordinateHTML);
+                }
+
             }).fail(function (error) {
-            console.error(error);
+                console.error(error);
             });
+
+        }
+
+
         // });
 
     });
