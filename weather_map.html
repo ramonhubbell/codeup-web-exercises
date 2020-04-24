@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="js/keys.js"></script>
+    <script src="js/mapbox-geocode-utils.js"></script>
+    <script src="js/mapbox_maps_api.js"></script>
+
+</head>
+<body>
+
+
+
+
+<main class="container">
+<h1>Weather App</h1>
+    <br>
+<h2>Current Weather In Dallas, TX</h2>
+
+<table id="weather-current" border="1">
+    <tbody>
+    <tr>
+        <td id="temp"></td>
+    </tr>
+    <tr>
+        <td>Description: <span id="description"></span></td>
+    </tr>
+    <tr>
+        <td>Humidity: <span id="humidity"></span></td>
+    </tr>
+    <tr>
+        <td>Wind: <span id="speed"></td>
+    </tr>
+    <tr>
+        <td>Pressure: <span id="pressure"></td>
+    </tr>
+    </tbody>
+</table>
+
+    <br>
+    <h2>Five Day Forecast In Dallas, TX</h2>
+    <div id="weather-forecast" class="card-deck">
+    </div>
+    <br>
+    <h2>Five Day Forecast</h2>
+    <div id="coordinate-forecast" class="card-deck">
+    </div>
+    <br>
+    <div id='map' style='width: 1100px; height: 900px;'></div>
+    <script>
+        mapboxgl.accessToken = MAP_KEY;
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v9',
+            zoom: 9,
+            center: [-96.798685, 32.781214]
+        });
+
+        var marker = new mapboxgl.Marker({
+            draggable: true
+        })
+            .setLngLat([-96.798685, 32.781214])
+            .addTo(map)
+
+        // function onDragEnd() {
+        //     var lngLat = marker.getLngLat();
+        //     // coordinates.style.display = 'block';
+        //     // coordinates.innerHTML =
+        //     console.log(lngLat);
+        //        console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
+        // }
+        // marker.on('dragend', onDragEnd);
+
+    </script>
+</main>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+        console.log('This page is ready.');
+
+        var url = "https://api.openweathermap.org/data/2.5/weather?";
+        var HTML = "";
+
+            $.get(url, {
+                    "APPID": OWM_KEY,
+                    "q": "Dallas",
+                    "units": "imperial"
+                }
+            ).done(function (data) {
+
+                $('#temp').html(data.main.temp + "<span>&#8457;</span>");
+                $('#description').text(data.weather[0].description);
+                $('#humidity').text(data.main.humidity);
+                $('#speed').text(data.wind.speed);
+                $('#pressure').text(data.main.pressure);
+                console.log(data);
+                console.log(data.main.temp);
+                console.log(data.weather[0].icon);
+                console.log(data.weather[0].description);
+                console.log(data.main.humidity);
+                console.log(data.wind.speed);
+                console.log(data.main.pressure);
+            }).fail(function (error) {
+                console.error(error);
+            });
+
+     // 5-day forecast or Dallas, TX
+
+        var url = "https://api.openweathermap.org/data/2.5//forecast?";
+        var HTML = "";
+
+        $.get(url, {
+                "APPID": OWM_KEY,
+                "q": "Dallas",
+                "units": "imperial",
+            }
+        ).done(function (data) {
+            console.log(data);
+
+            for (var x = 3; x < 40; x += 8) {
+                console.log('for loop iteration #' + x);
+                console.log(data.list[x]);
+
+                var weatherList = data.list[x];
+                var timeArray = weatherList.dt_txt;
+                var dateOnly = (timeArray.split(' ')).shift();
+
+                generatedHTML = "<div class='card' style='width: 18rem;'>" +
+                        "<div class='card-body'>" +
+                        "<div class='card-holder'>" + dateOnly + "</div>" +
+                        "<ul class='list-group list-group-flush'>" +
+                        "<li class='list-group-item'>"  + weatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
+                        "<li class='list-group-item'>" + "Description: " + weatherList.weather[0].description + "</li>" +
+                        "<li class='list-group-item'>" + "Humidity: " + weatherList.main.humidity + "</li>" +
+                        "<li class='list-group-item'>" + "Wind: " + weatherList.wind.speed + "</li>" +
+                        "<li class='list-group-item'>" + "Pressure: " + weatherList.main.pressure + "</li>" +
+                        "</ul>" +
+                        "</div>" +
+                        "</div>";
+
+                $('#weather-forecast').append(generatedHTML);
+
+            }
+        }).fail(function (error) {
+            console.error(error);
+        });
+
+        // 5-day forecast from any coordinates
+        var lngLat;
+        function onDragEnd() {
+
+            lngLat = marker.getLngLat();
+
+            console.log(lngLat);
+            console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
+            getForecastByCoord(lngLat.lat, lngLat.lng);
+        }
+        marker.on('dragend', onDragEnd);
+
+        var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?";
+
+        var coordinateHTML = "";
+
+
+        function getForecastByCoord (latitude, longitude) {
+            console.log(latitude);
+            console.log(longitude);
+            $.get(coordinateUrl, {
+                "APPID": OWM_KEY,
+                "lat": latitude,
+                "lon": longitude,
+                "units": "imperial",
+            }).done(function (data) {
+                console.log(data);
+
+                $('#coordinate-forecast').empty();
+
+                for (var x = 3; x < 40; x += 8) {
+                    console.log('for loop iteration #' + x);
+                    console.log(data.list[x]);
+
+                    var coordWeatherList = data.list[x];
+                    var coordTimeArray = coordWeatherList.dt_txt;
+                    var coordDateOnly = (coordTimeArray.split(' ')).shift();
+
+
+                    coordinateHTML = "<div class='card' style='width: 18rem;'>" +
+                        "<div class='card-body'>" +
+                        "<div class='card-holder'>" + coordDateOnly + "</div>" +
+                        "<ul class='list-group list-group-flush'>" +
+                        "<li class='list-group-item'>" + coordWeatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
+                        "<li class='list-group-item'>" + "Description: " + coordWeatherList.weather[0].description + "</li>" +
+                        "<li class='list-group-item'>" + "Humidity: " + coordWeatherList.main.humidity + "</li>" +
+                        "<li class='list-group-item'>" + "Wind: " + coordWeatherList.wind.speed + "</li>" +
+                        "<li class='list-group-item'>" + "Pressure: " + coordWeatherList.main.pressure + "</li>" +
+                        "</ul>" +
+                        "</div>" +
+                        "</div>";
+
+                    $('#coordinate-forecast').append(coordinateHTML);
+                }
+
+            }).fail(function (error) {
+                console.error(error);
+            });
+
+        }
+
+
+        // });
+
+    });
+</script>
+</body>
+</html>
