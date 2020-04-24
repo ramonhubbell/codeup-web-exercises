@@ -22,33 +22,27 @@ console.log('page is ready');
 
 function userCommitDate (username) {
     let url = `https://api.github.com/users/${username}/events`;
-    fetch (url, {headers: {'Authorization':`token ${GIT_KEY}`}})
+    return fetch (url, {headers: {'Authorization':`token ${GIT_KEY}`}})
         .then(response => {
-            return response.json().then(users => {
-                    console.log(users);
-                    // users.forEach( userObj => {
-                    //     console.log(userObj.login);
-                    // })
+             response.json()
+                .then(listOfEvents => {
+                    // console.log(listOfEvents);
+                    // console.log(listOfEvents[0].type);
+                    // console.log(listOfEvents[0].created_at);
+                    for(let event of listOfEvents){
+                    // listOfEvents.forEach( event => {
+                    if ( event.type === 'PushEvent' ) {
+                        return event.created_at;
+                    }
+                    }
                 })
         })
 }
-console.log(GIT_KEY);
-userCommitDate('ramonhubbell');
-// const url = `https://api.github.com/users/${username}/events/public`;
-// const userCommit = fetch (url, {headers: {'Authorization': `token ${GIT_KEY}`}});
-// userCommit
-//     .then( response => response.json()
-//         .then(data => {
-//             console.log(data);
-//             console.log(data[0].type);
-//             console.log(data[0].payload);
-//             console.log(data[0].payload.commits);
-//             console.log(data[0].payload.commits.created_at);
-            // if (data[0].type === "PushEvent") {
-            //     console.log()
-            // }
-    //     }))
-    // .catch( error => console.log(error));
+// console.log(GIT_KEY);
+userCommitDate('ramonhubbell')
+    .then( lastCommitDate => console.log('lastCommitdate ', lastCommitDate));
+console.log(userCommitDate('ramonhubbell'));
+
 
 // function getGithubUsernames() {
 //     return fetch('https://api.github.com/users')
@@ -61,3 +55,16 @@ userCommitDate('ramonhubbell');
 //         console.log(userObj.login);
 //     });
 // }).catch(error => console.error(error));
+
+const wait = milliseconds => {
+    return new Promise( (resolved, reject) => {
+        setTimeout( () => {
+            resolved(milliseconds);
+        }, milliseconds);
+    });
+};
+
+wait(1000).then( (ms) => console.log(`You'll see this after ${ms/1000} seconds`));
+
+wait(3000).then( (ms) => console.log(`You'll see this after ${ms/1000} seconds`));
+
