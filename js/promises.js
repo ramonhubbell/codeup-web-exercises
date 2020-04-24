@@ -1,24 +1,4 @@
 console.log('page is ready');
-// lastFMPromise
-//     .then( response => response.json()
-//         .then( data => {
-//             let xlCover = "";
-//             let generatedHTML = "<div>";
-//             for(let album of data.topalbums.album){
-//                 xlCover = album.image[3]['#text'];
-//                 generatedHTML += `
-//                     <h3>${album.name}</h3>
-//                     <h4>${album.artist.name}</h4>
-//                     <img src="${xlCover}" alt="album's artwork">
-//                     `;
-//             }
-//             generatedHTML += "</div>";
-//             document.body.innerHTML = generatedHTML;
-//         })
-//     ).catch( error => console.log(error));
-
-// fetch(url, {headers: {'Authorization': 'token YOUR_TOKEN_HERE'}})
-// /users/:username/events/public
 
 function userCommitDate (username) {
     let url = `https://api.github.com/users/${username}/events`;
@@ -38,7 +18,7 @@ function userCommitDate (username) {
                 })
         })
 }
-// console.log(GIT_KEY);
+
 userCommitDate('ramonhubbell')
     .then( lastCommitDate => console.log('lastCommitdate ', lastCommitDate));
 console.log(userCommitDate('ramonhubbell'));
