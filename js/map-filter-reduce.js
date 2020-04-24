@@ -42,7 +42,7 @@ const users = [
 // user object has at least 3 languages in the languages array.
 
 var atLeast3Languages = users.filter(function(name){
-    return name.languages.length <= 3;
+    return name.languages.length >= 3;
 });
 
 console.log('atLeast3Languages ' , atLeast3Languages);
@@ -81,5 +81,15 @@ var longestEmail = userEmails.reduce((longest, currEmail) => {
 
 console.log(longestEmail);
 
-// ["ryan@codeup.com", "luis@codeup.com", "zach@codeup.com",
-//     "fernando@codeup.com", "justin@codeup.com"]
+//Exercise 6: Use .reduce to get the list of user's names in a single string. Example:
+// Your instructors are: ryan, luis, zach, fernando, justin.
+
+console.log(users[0].name);
+ var listOfUsers = users.reduce((names, user) => {
+     if (names !== '') {
+         names = names + ', ';
+     }
+    return names + user.name;
+}, '');
+
+ console.log(listOfUsers);
