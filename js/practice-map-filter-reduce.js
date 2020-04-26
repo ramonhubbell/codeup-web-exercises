@@ -56,7 +56,7 @@ console.log(arrayOfLanguages);
 //     return user.email + 1;
 // });
 
-const emailAddresses = users.map( user => user.email + 1);
+const emailAddresses = users.map( user => user.email);
 
 console.log(emailAddresses);
 
@@ -80,3 +80,15 @@ const longestEmail = emailAddresses.reduce((longest, currEmail) => {
 }, "");
 
 console.log(longestEmail);
+
+//Exercise 6: Use .reduce to get the list of user's names in a single string.
+
+const listOfNames = users.reduce( (totalNames, currName) => {
+    if (totalNames !== '') {
+        totalNames = totalNames + ', ';
+    }
+    return totalNames + currName.name;
+}, []);
+
+console.log(listOfNames);
+
