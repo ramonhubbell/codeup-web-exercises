@@ -8,16 +8,18 @@
 
 <h1>Pizza Exercise</h1>
 
+<br>
+<button id="update-btn">Click To Update</button>
+
 <table id="products" border="1">
     <thead>
     <tr>
+<!--        <th id="itemNumber">Topping Number</th>-->
         <th id="toppings">Most Popular Pizza Toppings</th>
     </tr>
     </thead>
     <tbody id="insertToppings"></tbody>
 </table>
-<br>
-<button id="update-btn">Click To Update</button>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <!--<script src="data/inventory.json"></script>-->
@@ -47,7 +49,9 @@
 
             function getInfo() {
                 $.get(url).done(function (data) {
-                    console.log("data " + data.toppings);
+                    for(var i = 0; i < data.length; i++) {
+                        console.log("Number: " + i + " data: " + data[i].toppings);
+                    }
                     console.log(data[0]);
                     console.log(data[1]);
                     console.log(data[16].toppings);
