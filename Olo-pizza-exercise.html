@@ -11,7 +11,7 @@
 <table id="products" border="1">
     <thead>
     <tr>
-        <th id="title">Most Popular Pizza Toppings</th>
+        <th id="toppings">Most Popular Pizza Toppings</th>
     </tr>
     </thead>
     <tbody id="insertToppings"></tbody>
@@ -31,15 +31,15 @@
             var url = "data/pizzas.json";
             var $toppings = $('#insertToppings');
             var generatedHTML = "";
-            var title = "";
+            var toppings = "";
 
             getInfo();
 
-            function renderHTML(toolsArray) {
+            function renderHTML(toppingsArray) {
                 $('#insertToppings').empty();
-                toolsArray.forEach(function (tool) {
+                toppingsArray.forEach(function (topping) {
                     generatedHTML = "<tr>" +
-                        "<td>" + tool.title + "</td>" +
+                        "<td>" + topping.toppings + "</td>" +
                         "</tr>";
                     $toppings.append(generatedHTML);
                 });
@@ -47,12 +47,19 @@
 
             function getInfo() {
                 $.get(url).done(function (data) {
-                    // console.log("data" + data);
+                    console.log("data " + data.toppings);
+                    console.log(data[0]);
+                    console.log(data[1]);
+                    console.log(data[16].toppings);
                     renderHTML(data);
                 }).fail(function (error) {
                     console.error(error);
                 });
             };
+
+            $('#update-btn').click(function() {
+                getInfo();
+            });
 
 
         });
