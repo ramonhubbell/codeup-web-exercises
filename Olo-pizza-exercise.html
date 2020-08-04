@@ -40,6 +40,7 @@
             function renderHTML(toppingsArray) {
                 $('#insertToppings').empty();
                 toppingsArray.forEach(function (topping) {
+                    // console.log("For Each topping.toppings: " + topping.toppings);
                     generatedHTML = "<tr>" +
                         "<td>" + topping.toppings + "</td>" +
                         "</tr>";
@@ -49,25 +50,44 @@
 
             function getInfo() {
                 $.get(url).done(function (data) {
-                    for(var i = 0; i < data.length; i++) {
-                        // console.log("Number: " + i + " data: " + data[i].toppings);
-                        const propertyValues = Object.values(data[i].toppings);
-                        console.log(propertyValues);
-                        console.log(typeof propertyValues)
-                        function countCombinations(propertyValues){
-                        const combinationCountObject = propertyValues.reduce((combinationCounts, combination) => {
-                            if(typeof combinationCounts[combination] === 'undefined') {
-                                combinationCounts[combination] = 1;
-                            } else {
-                                    combinationCounts[combination] += 1;
-                                }
-                                return combinationCounts;
-                            },{});
-                        return combinationCountObject;
-                        }
-                        console.log(countCombinations(propertyValues));
+                    // for(var i = 0; i < data.length; i++) {
+                    //     console.log("Number: " + i + " data: " + data[i].toppings);
+                    //     const propertyValues = Object.values(data[i].toppings);
+                    //     console.log(propertyValues);
+                    //     console.log(typeof propertyValues)
+                    //
+                    // }
+                    var combinations = data.filter(function(topping){
+                        return topping.toppings;
+                    });
+                    console.log(combinations);
+                    var newCombinationArray = [];
+                    for (let combination of combinations) {
+                        console.log(combination.toppings);
+                        newCombinationArray.push(combination.toppings);
                     }
+                    console.log(newCombinationArray);
+                    // Joining will take an array and convert it to a string with the delimiter of your choice.
+                    const wordsOfCombinations = newCombinationArray.join(' ');
+                    console.log(wordsOfCombinations);
 
+
+                    // function countCombinations(wordsOfCombinations){
+                    // Splitting will take a string and turn it into an array. String splitting uses a delimiter
+                    // to decide where the splitting should occur.
+                    //     const arrayOfCombinations = wordsOfCombinations.split(' ');
+                    //     console.log(arrayOfCombinations);
+                    //         const combinationCountObject = arrayOfCombinations.reduce((combinationCounts, combination) => {
+                    //             if(typeof combinationCounts[combination] === 'undefined') {
+                    //                 combinationCounts[combination] = 1;
+                    //             } else {
+                    //                     combinationCounts[combination] += 1;
+                    //                 }
+                    //                 return combinationCounts;
+                    //             },{});
+                    //         return combinationCountObject;
+                    //         }
+                    //     console.log(countCombinations(wordsOfCombinations));
 
 
                     renderHTML(data);
@@ -82,6 +102,7 @@
 
             function countWords(sentence) {
                 const words = sentence.split(' '); // transform a sentence into an array of words
+                console.log(words);
                 const wordCountObject = words.reduce((wordCounts, word) => {
                     if (typeof wordCounts[word] === 'undefined') {
                         // if the word is not yet present in our object, set it's value to 1
