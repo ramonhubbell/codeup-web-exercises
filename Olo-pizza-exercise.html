@@ -15,10 +15,14 @@
         <thead>
         <tr>
             <!--        <th id="itemNumber">Topping Number</th>-->
+            <th id="rankings">Ranking</th>
             <th id="toppings">Most Popular Pizza Toppings</th>
         </tr>
         </thead>
-        <tbody id="insertToppings"></tbody>
+        <tr>
+            <td id="insertRankings"></td>
+            <td id="insertToppings"></td>
+        </tr>
     </table>
 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -32,18 +36,26 @@
 
                 var url = "data/pizzas.json";
                 var $toppings = $('#insertToppings');
+                var $rankings = $('#insertRankings');
                 var generatedHTML = "";
                 var toppings = "";
+                var rankings = "";
 
                 getInfo();
 
                 function renderHTML(toppingsArray) {
                     $('#insertToppings').empty();
+                    $('#insertRankings').empty();
                     for (let i = 0; i < 20; i++){
-                        generatedHTML = "<tr>" +
+                        generatedHTML =
+                                 "<tr>" +
+                                "<td>" + (i + 1) + "</td>" +
+                                "</tr>" +
+                                "<tr>" +
                                 "<td>" + toppingsArray[i] + "</td>" +
                                 "</tr>";
-                            $toppings.append(generatedHTML);
+                            $rankings.append(generatedHTML) && $toppings.append(generatedHTML);;
+
                     }
                     // toppingsArray.forEach(function (topping) {
                     //     generatedHTML = "<tr>" +
