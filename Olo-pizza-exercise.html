@@ -5,109 +5,104 @@
     <title>Online Store</title>
 </head>
 <body>
+<div class="container">
+    <h1>Pizza Exercise</h1>
 
-<h1>Pizza Exercise</h1>
+    <br>
+    <button id="update-btn">Click To Update</button>
+    <br><br>
+    <table id="products" border="1">
+        <thead>
+        <tr>
+            <!--        <th id="itemNumber">Topping Number</th>-->
+            <th id="toppings">Most Popular Pizza Toppings</th>
+        </tr>
+        </thead>
+        <tbody id="insertToppings"></tbody>
+    </table>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--<script src="data/inventory.json"></script>-->
+    <script>
+        (function () {
+            "use strict";
 
-<br>
-<button id="update-btn">Click To Update</button>
-<br><br>
-<table id="products" border="1">
-    <thead>
-    <tr>
-<!--        <th id="itemNumber">Topping Number</th>-->
-        <th id="toppings">Most Popular Pizza Toppings</th>
-    </tr>
-    </thead>
-    <tbody id="insertToppings"></tbody>
-</table>
+            $(document).ready(function () {
+                console.log('This page is ready.');
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<!--<script src="data/inventory.json"></script>-->
-<script>
-    (function () {
-        "use strict";
+                var url = "data/pizzas.json";
+                var $toppings = $('#insertToppings');
+                var generatedHTML = "";
+                var toppings = "";
 
-        $(document).ready(function () {
-            console.log('This page is ready.');
+                getInfo();
 
-            var url = "data/pizzas.json";
-            var $toppings = $('#insertToppings');
-            var generatedHTML = "";
-            var toppings = "";
-
-            getInfo();
-
-            function renderHTML(toppingsArray) {
-                $('#insertToppings').empty();
-                toppingsArray.forEach(function (topping) {
-                    generatedHTML = "<tr>" +
-                        "<td>" + topping.toppings + "</td>" +
-                        "</tr>";
-                    $toppings.append(generatedHTML);
-                });
-            };
-
-            function getInfo() {
-                $.get(url).done(function (data) {
-                    var combinations = data.filter(function(topping){
-                        return topping.toppings;
+                function renderHTML(toppingsArray) {
+                    $('#insertToppings').empty();
+                    toppingsArray.forEach(function (topping) {
+                        generatedHTML = "<tr>" +
+                            "<td>" + topping.toppings + "</td>" +
+                            "</tr>";
+                        $toppings.append(generatedHTML);
                     });
-                    // console.log(combinations);
-                    var newCombinationArray = [];
-                    for (let combination of combinations) {
-                        // console.log(combination.toppings);
-                        newCombinationArray.push(combination.toppings);
-                    }
-                    // console.log(newCombinationArray);
+                };
 
-
-                    function countCombinations(newCombinationArray){
+                function getInfo() {
+                    $.get(url).done(function (data) {
+                        var combinations = data.filter(function (topping) {
+                            return topping.toppings;
+                        });
+                        var newCombinationArray = [];
+                        for (let combination of combinations) {
+                            newCombinationArray.push(combination.toppings);
+                        }
+                        function countCombinations(newCombinationArray) {
                             const combinationCountObject = newCombinationArray.reduce((combinationCounts, combination) => {
-                                if(typeof combinationCounts[combination] === 'undefined') {
+                                if (typeof combinationCounts[combination] === 'undefined') {
                                     combinationCounts[combination] = 1;
                                 } else {
-                                        combinationCounts[combination] += 1;
-                                    }
-                                    return combinationCounts;
-                                },{});
-                            return combinationCountObject;
-                            }
+                                    combinationCounts[combination] += 1;
+                                }
+                                return combinationCounts;
+                            }, {});
+                            return Object.entries(combinationCountObject).sort((a,b) => b[1]-a[1]);
+                            // return combinationCountObject;
+                        }
                         console.log(countCombinations(newCombinationArray));
 
 
-                    renderHTML(data);
-                }).fail(function (error) {
-                    console.error(error);
+                        renderHTML(data);
+                    }).fail(function (error) {
+                        console.error(error);
+                    });
+                };
+
+                $('#update-btn').click(function () {
+                    getInfo();
                 });
-            };
 
-            $('#update-btn').click(function() {
-                getInfo();
-            });
+                function countWords(sentence) {
+                    const words = sentence.split(' '); // transform a sentence into an array of words
+                    console.log(words);
+                    const wordCountObject = words.reduce((wordCounts, word) => {
+                        if (typeof wordCounts[word] === 'undefined') {
+                            // if the word is not yet present in our object, set it's value to 1
+                            wordCounts[word] = 1;
+                        } else {
+                            // otherwise increment the existing count
+                            wordCounts[word] += 1;
+                        }
+                        return wordCounts;
+                    }, {}); // start with an empty object
+                    return Object.entries(wordCountObject).sort((a,b) => b[1]-a[1]);
+                    // return wordCountObject;
+                }
 
-            function countWords(sentence) {
-                const words = sentence.split(' '); // transform a sentence into an array of words
-                console.log(words);
-                const wordCountObject = words.reduce((wordCounts, word) => {
-                    if (typeof wordCounts[word] === 'undefined') {
-                        // if the word is not yet present in our object, set it's value to 1
-                        wordCounts[word] = 1;
-                    } else {
-                        // otherwise increment the existing count
-                        wordCounts[word] += 1;
-                    }
-                    return wordCounts;
-                }, {}); // start with an empty object
-                return wordCountObject;
-            }
-            console.log(countWords('Mary had a little lamb little lamb little lamb'));
+                console.log(countWords('Mary had a little lamb little lamb little lamb'));
 // {Mary: 1, had: 1, a: 1, little: 3, lamb: 3}
-
-
-
-        });
-    })();
-</script>
+            });
+        })();
+    </script>
 
 </body>
 </html>
