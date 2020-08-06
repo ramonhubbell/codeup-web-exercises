@@ -15,12 +15,15 @@
         <thead>
         <tr>
             <!--        <th id="itemNumber">Topping Number</th>-->
-            <th id="rankings">Ranking</th>
+<!--            <th id="rankings">Ranking</th>-->
             <th id="toppings">Most Popular Pizza Toppings</th>
+        </tr>
+        <tr>
+            <th>Ranking: Toppings, Number of Times Ordered</th>
         </tr>
         </thead>
         <tr>
-            <td id="insertRankings"></td>
+<!--            <td id="insertRankings"></td>-->
             <td id="insertToppings"></td>
         </tr>
     </table>
@@ -35,8 +38,8 @@
                 console.log('This page is ready.');
 
                 var url = "data/pizzas.json";
-                var $toppings = $('#insertToppings');
                 var $rankings = $('#insertRankings');
+                var $toppings = $('#insertToppings');
                 var generatedHTML = "";
                 var toppings = "";
                 var rankings = "";
@@ -44,17 +47,18 @@
                 getInfo();
 
                 function renderHTML(toppingsArray) {
-                    $('#insertToppings').empty();
                     $('#insertRankings').empty();
+                    $('#insertToppings').empty();
                     for (let i = 0; i < 20; i++){
                         generatedHTML =
-                                 "<tr>" +
-                                "<td>" + (i + 1) + "</td>" +
-                                "</tr>" +
+                                //  "<tr>" +
+                                // "<td>" + (i + 1) + "</td>" +
+                                // "</tr>" +
                                 "<tr>" +
-                                "<td>" + toppingsArray[i] + "</td>" +
+                                "<td>" + (i + 1) + ":   " + toppingsArray[i] + "</td>" +
                                 "</tr>";
-                            $rankings.append(generatedHTML) && $toppings.append(generatedHTML);;
+                            $rankings.append(generatedHTML);
+                            $toppings.append(generatedHTML);
 
                     }
                     // toppingsArray.forEach(function (topping) {
