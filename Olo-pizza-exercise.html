@@ -2,11 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Online Store</title>
+    <title>Popular Pizza Toppings</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
 <div class="container ml-3">
-    <h1>Pizza Exercise</h1>
+    <h1>Top 20 Pizza Topping Combinations</h1>
 
     <br>
     <button id="update-btn">Click To Update</button>
@@ -14,22 +16,16 @@
     <table id="products" border="1">
         <thead>
         <tr>
-            <!--        <th id="itemNumber">Topping Number</th>-->
-<!--            <th id="rankings">Ranking</th>-->
-            <th id="toppings">Most Popular Pizza Toppings</th>
-        </tr>
-        <tr>
-            <th>Ranking: Toppings, Number of Times Ordered</th>
+            <th>Ranking</th>
+            <th>Toppings and Frequency</th>
         </tr>
         </thead>
-        <tr>
-<!--            <td id="insertRankings"></td>-->
-            <td id="insertToppings"></td>
-        </tr>
+            <tbody id="insertToppings"></tbody>
     </table>
 </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <!--<script src="data/inventory.json"></script>-->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
         (function () {
             "use strict";
@@ -38,35 +34,23 @@
                 console.log('This page is ready.');
 
                 var url = "data/pizzas.json";
-                var $rankings = $('#insertRankings');
+                // var url = "https://www.olo.com/pizzas.json";
                 var $toppings = $('#insertToppings');
                 var generatedHTML = "";
                 var toppings = "";
-                var rankings = "";
 
                 getInfo();
 
                 function renderHTML(toppingsArray) {
-                    $('#insertRankings').empty();
                     $('#insertToppings').empty();
                     for (let i = 0; i < 20; i++){
                         generatedHTML =
-                                //  "<tr>" +
-                                // "<td>" + (i + 1) + "</td>" +
-                                // "</tr>" +
                                 "<tr>" +
-                                "<td>" + (i + 1) + ":   " + toppingsArray[i] + "</td>" +
+                                "<td>" + (i + 1) + "</td>" +
+                                "<td>" + toppingsArray[i] + "</td>" +
                                 "</tr>";
-                            $rankings.append(generatedHTML);
                             $toppings.append(generatedHTML);
-
                     }
-                    // toppingsArray.forEach(function (topping) {
-                    //     generatedHTML = "<tr>" +
-                    //         "<td>" + topping + "</td>" +
-                    //         "</tr>";
-                    //     $toppings.append(generatedHTML);
-                    // });
                 };
 
                 function getInfo() {
@@ -91,7 +75,6 @@
                         }
                         console.log(countCombinations(newCombinationArray));
                         renderHTML(countCombinations(newCombinationArray));
-                        // console.log(renderHTML(data));
                     }).fail(function (error) {
                         console.error(error);
                     });
@@ -129,6 +112,5 @@
             });
         })();
     </script>
-
 </body>
 </html>
