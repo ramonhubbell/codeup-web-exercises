@@ -6,8 +6,8 @@ console.log("Pizza Exercise");
     $(document).ready(function () {
         console.log('This page is ready.');
 
-        var url = "data/pizzas.json";
-        // var url = "https://www.olo.com/pizzas.json";
+        // var url = "data/pizzas.json";
+        var url = "https://cors-anywhere.herokuapp.com/https://www.olo.com/pizzas.json";
         var $toppings = $('#insertToppings');
         var generatedHTML = "";
         var toppings = "";
@@ -28,7 +28,12 @@ console.log("Pizza Exercise");
 
         function getInfo() {
             $.get(url).done(function (data) {
-                var combinations = data.filter(function (topping) {
+                var parseData = JSON.parse(data);
+                console.log(Array.isArray(parseData));
+                console.log(typeof parseData);
+                console.log(parseData);
+                // console.log(data);
+                var combinations = parseData.filter(function (topping) {
                     return topping.toppings;
                 });
                 var newCombinationArray = [];
@@ -46,7 +51,7 @@ console.log("Pizza Exercise");
                     }, {});
                     return Object.entries(combinationCountObject).sort((a,b) => b[1]-a[1]);
                 }
-                console.log(countCombinations(newCombinationArray));
+                // console.log(countCombinations(newCombinationArray));
                 renderHTML(countCombinations(newCombinationArray));
             }).fail(function (error) {
                 console.error(error);
