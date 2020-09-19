@@ -215,11 +215,14 @@
                                         coordWeatherList.weather[0].icon + ".png'>" +
                                     "</div>" +
                                 "</li>" +
-                                "<li class='list-group-item'>" +
-                                    "Description: " + coordWeatherList.weather[0].description +
-                                "</li>" +
-                                "<li class='list-group-item'>" +
-                                    "Humidity: " + coordWeatherList.main.humidity +
+                                "<li class='list-group-item column'>" +
+                                    "<div class='row'>" +
+                                        "Description: " + coordWeatherList.weather[0].description +
+                                    "</div>" +
+                                    "<br>" +
+                                    "<div class='row'>" +
+                                        "Humidity: " + coordWeatherList.main.humidity +
+                                    "</div>" +
                                 "</li>" +
                                 "<li class='list-group-item'>" +
                                     "Wind: " + coordWeatherList.wind.speed +
