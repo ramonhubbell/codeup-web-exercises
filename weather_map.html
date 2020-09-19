@@ -200,7 +200,8 @@
                         "<div class='card-body'>" +
                         "<div class='card-holder'>" + coordDateOnly + "</div>" +
                         "<ul class='list-group list-group-flush'>" +
-                        "<li class='list-group-item'>" + coordWeatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
+                        "<li class='list-group-item'>" + coordWeatherList.main.temp_max + "<span>&#8457;</span>" +
+                        "<img src='http://openweathermap.org/img/w/" + coordWeatherList.weather[0].icon + ".png'>" + "</li>" +
                         "<li class='list-group-item'>" + "Description: " + coordWeatherList.weather[0].description + "</li>" +
                         "<li class='list-group-item'>" + "Humidity: " + coordWeatherList.main.humidity + "</li>" +
                         "<li class='list-group-item'>" + "Wind: " + coordWeatherList.wind.speed + "</li>" +
