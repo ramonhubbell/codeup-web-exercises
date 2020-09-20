@@ -196,17 +196,42 @@
                     var coordDateOnly = (coordTimeArray.split(' ')).shift();
 
 
-                    coordinateHTML = "<div class='card' style='width: 18rem;'>" +
-                        "<div class='card-body'>" +
-                        "<div class='card-holder'>" + coordDateOnly + "</div>" +
-                        "<ul class='list-group list-group-flush'>" +
-                        "<li class='list-group-item'>" + coordWeatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
-                        "<li class='list-group-item'>" + "Description: " + coordWeatherList.weather[0].description + "</li>" +
-                        "<li class='list-group-item'>" + "Humidity: " + coordWeatherList.main.humidity + "</li>" +
-                        "<li class='list-group-item'>" + "Wind: " + coordWeatherList.wind.speed + "</li>" +
-                        "<li class='list-group-item'>" + "Pressure: " + coordWeatherList.main.pressure + "</li>" +
-                        "</ul>" +
-                        "</div>" +
+                    coordinateHTML =
+                        "<div class='card' style='width: 18rem;'>" +
+                            "<div class='card-header text-center'>" +
+                                coordDateOnly +
+                            "</div>" +
+                            "<div class='card-body'>" +
+                                "<ul class='list-group list-group-flush'>" +
+                                "<li class='list-group-item column'>" +
+                                    "<div class='row justify-content-center'>" +
+                                        coordWeatherList.main.temp_max +
+                                        "<span>" +
+                                            "&#8457;" +
+                                        "</span>" +
+                                    "</div>" +
+                                    "<div class='row justify-content-center'>" +
+                                        "<img src='http://openweathermap.org/img/w/" +
+                                        coordWeatherList.weather[0].icon + ".png'>" +
+                                    "</div>" +
+                                "</li>" +
+                                "<li class='list-group-item column'>" +
+                                    "<div class='row'>" +
+                                        "Description: " + coordWeatherList.weather[0].description +
+                                    "</div>" +
+                                    "<br>" +
+                                    "<div class='row'>" +
+                                        "Humidity: " + coordWeatherList.main.humidity +
+                                    "</div>" +
+                                "</li>" +
+                                "<li class='list-group-item'>" +
+                                    "Wind: " + coordWeatherList.wind.speed +
+                                "</li>" +
+                                "<li class='list-group-item'>" +
+                                    "Pressure: " + coordWeatherList.main.pressure +
+                                "</li>" +
+                                "</ul>" +
+                            "</div>" +
                         "</div>";
 
                     $('#coordinate-forecast').append(coordinateHTML);
