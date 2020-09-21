@@ -47,7 +47,12 @@
     <div id="weather-forecast" class="card-deck">
     </div>
     <br>
-    <h2>Five Day Forecast</h2>
+    <nav class="navbar navbar-primary bg-primary text-white">
+        <h4>Five Day Forecast</h4>
+        <h5>Current City:</h5>
+    </nav>
+    <br>
+<!--    <h2>Five Day Forecast</h2>-->
     <div id="coordinate-forecast" class="card-deck">
     </div>
     <br>
@@ -137,17 +142,39 @@
                 var timeArray = weatherList.dt_txt;
                 var dateOnly = (timeArray.split(' ')).shift();
 
-                generatedHTML = "<div class='card' style='width: 18rem;'>" +
-                        "<div class='card-body'>" +
-                        "<div class='card-holder'>" + dateOnly + "</div>" +
-                        "<ul class='list-group list-group-flush'>" +
-                        "<li class='list-group-item'>"  + weatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
-                        "<li class='list-group-item'>" + "Description: " + weatherList.weather[0].description + "</li>" +
-                        "<li class='list-group-item'>" + "Humidity: " + weatherList.main.humidity + "</li>" +
-                        "<li class='list-group-item'>" + "Wind: " + weatherList.wind.speed + "</li>" +
-                        "<li class='list-group-item'>" + "Pressure: " + weatherList.main.pressure + "</li>" +
-                        "</ul>" +
-                        "</div>" +
+                generatedHTML =
+                        "<div class='card' style='width: 18rem;'>" +
+                            "<div class='card-header text-center'>" +
+                                dateOnly +
+                            "</div>" +
+                            "<div class='card-body'>" +
+                                "<ul class='list-group list-group-flush'>" +
+                                    "<li class='list-group-item column'>" +
+                                        "<div class='row justify-content-center'>" +
+                                            weatherList.main.temp_max +
+                                            "<span>" +
+                                                "&#8457;" +
+                                            "</span>" +
+                                        "</div>" +
+                                        "<div class='row justify-content-center'>" +
+                                            "<img src='http://openweathermap.org/img/w/" +
+                                                weatherList.weather[0].icon + ".png'>" +
+                                        "</div>" +
+                                    "</li>" +
+                                    "<li class='list-group-item'>" +
+                                        "Description: " + weatherList.weather[0].description +
+                                    "</li>" +
+                                    "<li class='list-group-item'>" +
+                                        "Humidity: " + weatherList.main.humidity +
+                                    "</li>" +
+                                    "<li class='list-group-item'>" +
+                                        "Wind: " + weatherList.wind.speed +
+                                    "</li>" +
+                                    "<li class='list-group-item'>" +
+                                        "Pressure: " + weatherList.main.pressure +
+                                    "</li>" +
+                                "</ul>" +
+                            "</div>" +
                         "</div>";
 
                 $('#weather-forecast').append(generatedHTML);
