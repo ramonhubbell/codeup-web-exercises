@@ -82,15 +82,6 @@
             .setLngLat([-96.798685, 32.781214])
             .addTo(map)
 
-        // function onDragEnd() {
-        //     var lngLat = marker.getLngLat();
-        //     // coordinates.style.display = 'block';
-        //     // coordinates.innerHTML =
-        //     console.log(lngLat);
-        //        console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
-        // }
-        // marker.on('dragend', onDragEnd);
-
     </script>
 </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
@@ -200,8 +191,8 @@
 
             lngLat = marker.getLngLat();
 
-            console.log(lngLat);
-            console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
+            // console.log(lngLat);
+            // console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
             getForecastByCoord(lngLat.lat, lngLat.lng);
         }
         marker.on('dragend', onDragEnd);
@@ -220,7 +211,7 @@
                 "lon": longitude,
                 "units": "imperial",
             }).done(function (data) {
-                console.log(data);
+                // console.log(data);
 
                 $('#coordinate-forecast').empty();
 
@@ -276,7 +267,7 @@
                         "</div>";
 
                     $('#coordinate-forecast').append(coordinateHTML);
-                    $('marker').mouseup(function() {
+                    $('#map').mouseup(function() {
                         $('#weather-forecast').hide();
                     });
                 }
