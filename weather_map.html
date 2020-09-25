@@ -207,9 +207,6 @@
             console.log(latitude);
             console.log(longitude);
 
-            $('#map').mouseup(function() {
-                $('#weather-forecast').hide();
-            });
             $.get(coordinateUrl, {
                 "APPID": OWM_KEY,
                 "lat": latitude,
@@ -218,6 +215,7 @@
             }).done(function (data) {
                 console.log(data);
 
+                $('#weather-forecast').empty();
                 $('#coordinate-forecast').empty();
 
                 $('#city-name').empty();
@@ -234,10 +232,6 @@
                     var coordDateOnly = (coordTimeArray.split(' ')).shift();
 
                     coordinateHTML =
-                        // "<nav class='navbar navbar-primary bg-primary text-white'>" +
-                        //     "<h4>Five Day Forecast</h4>" +
-                        //     "<h5>Current City:</h5>" +
-                        // "</nav>" +
                         "<div class='card' style='width: 18rem;'>" +
                             "<div class='card-header text-center'>" +
                                 coordDateOnly +
@@ -274,7 +268,6 @@
                                 "</ul>" +
                             "</div>" +
                         "</div>";
-
 
                     $('#coordinate-forecast').append(coordinateHTML);
 
