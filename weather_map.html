@@ -44,7 +44,7 @@
         <br>
         <nav class="navbar navbar-primary bg-primary text-white">
             <h4>Five Day Forecast</h4>
-            <h5>Current City: Dallas, TX</h5>
+            <h5>Current City: <span id="city-name">Dallas</span></h5>
         </nav>
         <br>
 <!--        <h2>Five Day Forecast In Dallas, TX</h2>-->
@@ -199,21 +199,31 @@
 
         var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?";
 
+        var coordCityHTML = "";
         var coordinateHTML = "";
 
 
         function getForecastByCoord (latitude, longitude) {
             console.log(latitude);
             console.log(longitude);
+
+            $('#map').mouseup(function() {
+                $('#weather-forecast').hide();
+            });
             $.get(coordinateUrl, {
                 "APPID": OWM_KEY,
                 "lat": latitude,
                 "lon": longitude,
                 "units": "imperial",
             }).done(function (data) {
-                // console.log(data);
+                console.log(data);
 
                 $('#coordinate-forecast').empty();
+
+                $('#city-name').empty();
+                var coordCity = data.city.name;
+                console.log("City: " + coordCity);
+                coordCityHTML = "<span>" + coordCity + "</span>";
 
                 for (var x = 3; x < 40; x += 8) {
                     // console.log('for loop iteration #' + x);
@@ -222,7 +232,6 @@
                     var coordWeatherList = data.list[x];
                     var coordTimeArray = coordWeatherList.dt_txt;
                     var coordDateOnly = (coordTimeArray.split(' ')).shift();
-
 
                     coordinateHTML =
                         // "<nav class='navbar navbar-primary bg-primary text-white'>" +
@@ -266,11 +275,11 @@
                             "</div>" +
                         "</div>";
 
+
                     $('#coordinate-forecast').append(coordinateHTML);
-                    $('#map').mouseup(function() {
-                        $('#weather-forecast').hide();
-                    });
+
                 }
+                $('#city-name').append(coordCityHTML);
 
             }).fail(function (error) {
                 console.error(error);
