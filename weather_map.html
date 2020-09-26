@@ -13,45 +13,60 @@
 
 </head>
 <body>
-
-
-
-
-<main class="container">
-<h1>Weather App</h1>
-    <br>
-<h2>Current Weather In Dallas, TX</h2>
-
-<table id="weather-current" border="1">
-    <tbody>
-    <tr>
-        <td id="temp"></td>
-    </tr>
-    <tr>
-        <td>Description: <span id="description"></span></td>
-    </tr>
-    <tr>
-        <td>Humidity: <span id="humidity"></span></td>
-    </tr>
-    <tr>
-        <td>Wind: <span id="speed"></td>
-    </tr>
-    <tr>
-        <td>Pressure: <span id="pressure"></td>
-    </tr>
-    </tbody>
-</table>
-
-    <br>
-    <h2>Five Day Forecast In Dallas, TX</h2>
-    <div id="weather-forecast" class="card-deck">
-    </div>
-    <br>
-    <h2>Five Day Forecast</h2>
-    <div id="coordinate-forecast" class="card-deck">
-    </div>
-    <br>
-    <div id='map' style='width: 1100px; height: 900px;'></div>
+    <main class="container">
+        <h1>Weather App</h1>
+        <br>
+        <h2>Current Weather In Dallas, TX</h2>
+        <table id="weather-current" border="1">
+            <tbody>
+            <tr>
+                <td id="temp">
+                </td>
+            </tr>
+            <tr>
+                <td>Description: <span id="description"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Humidity: <span id="humidity"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Wind: <span id="speed"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Pressure: <span id="pressure"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <nav class="navbar navbar-primary bg-primary text-white">
+            <h4>Five Day Forecast</h4>
+            <h5>Current City: <span id="city-name">Dallas</span></h5>
+        </nav>
+        <br>
+<!--        <h2>Five Day Forecast In Dallas, TX</h2>-->
+        <div id="weather-forecast" class="card-deck">
+        </div>
+        <br>
+<!--        <div class="text-light bg-primary">-->
+<!--            <h4>Five Day Forecast</h4>-->
+<!--            <h5>Current City:</h5>-->
+<!--        </div>-->
+<!--        <nav class="navbar navbar-primary bg-primary text-white">-->
+<!--            <h4>Five Day Forecast</h4>-->
+<!--            <h5>Current City:</h5>-->
+<!--        </nav>-->
+        <br>
+        <!--    <h2>Five Day Forecast</h2>-->
+        <div id="coordinate-forecast" class="card-deck">
+        </div>
+        <br>
+        <div id='map' style='width: 1100px; height: 900px;'>
+        </div>
+        <br>
     <script>
         mapboxgl.accessToken = MAP_KEY;
         var map = new mapboxgl.Map({
@@ -67,26 +82,17 @@
             .setLngLat([-96.798685, 32.781214])
             .addTo(map)
 
-        // function onDragEnd() {
-        //     var lngLat = marker.getLngLat();
-        //     // coordinates.style.display = 'block';
-        //     // coordinates.innerHTML =
-        //     console.log(lngLat);
-        //        console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
-        // }
-        // marker.on('dragend', onDragEnd);
-
     </script>
 </main>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-
-<script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+    <script>
     $(document).ready(function(){
         console.log('This page is ready.');
 
@@ -105,13 +111,13 @@
                 $('#humidity').text(data.main.humidity);
                 $('#speed').text(data.wind.speed);
                 $('#pressure').text(data.main.pressure);
-                console.log(data);
-                console.log(data.main.temp);
-                console.log(data.weather[0].icon);
-                console.log(data.weather[0].description);
-                console.log(data.main.humidity);
-                console.log(data.wind.speed);
-                console.log(data.main.pressure);
+                // console.log(data);
+                // console.log(data.main.temp);
+                // console.log(data.weather[0].icon);
+                // console.log(data.weather[0].description);
+                // console.log(data.main.humidity);
+                // console.log(data.wind.speed);
+                // console.log(data.main.pressure);
             }).fail(function (error) {
                 console.error(error);
             });
@@ -130,24 +136,46 @@
             console.log(data);
 
             for (var x = 3; x < 40; x += 8) {
-                console.log('for loop iteration #' + x);
-                console.log(data.list[x]);
+                // console.log('for loop iteration #' + x);
+                // console.log(data.list[x]);
 
                 var weatherList = data.list[x];
                 var timeArray = weatherList.dt_txt;
                 var dateOnly = (timeArray.split(' ')).shift();
 
-                generatedHTML = "<div class='card' style='width: 18rem;'>" +
-                        "<div class='card-body'>" +
-                        "<div class='card-holder'>" + dateOnly + "</div>" +
-                        "<ul class='list-group list-group-flush'>" +
-                        "<li class='list-group-item'>"  + weatherList.main.temp_max + "<span>&#8457;</span>" + "</li>" +
-                        "<li class='list-group-item'>" + "Description: " + weatherList.weather[0].description + "</li>" +
-                        "<li class='list-group-item'>" + "Humidity: " + weatherList.main.humidity + "</li>" +
-                        "<li class='list-group-item'>" + "Wind: " + weatherList.wind.speed + "</li>" +
-                        "<li class='list-group-item'>" + "Pressure: " + weatherList.main.pressure + "</li>" +
-                        "</ul>" +
-                        "</div>" +
+                generatedHTML =
+                        "<div class='card' style='width: 18rem;'>" +
+                            "<div class='card-header text-center'>" +
+                                dateOnly +
+                            "</div>" +
+                            "<div class='card-body'>" +
+                                "<ul class='list-group list-group-flush'>" +
+                                    "<li class='list-group-item column'>" +
+                                        "<div class='row justify-content-center'>" +
+                                            weatherList.main.temp_max +
+                                            "<span>" +
+                                                "&#8457;" +
+                                            "</span>" +
+                                        "</div>" +
+                                        "<div class='row justify-content-center'>" +
+                                            "<img src='http://openweathermap.org/img/w/" +
+                                                weatherList.weather[0].icon + ".png'>" +
+                                        "</div>" +
+                                    "</li>" +
+                                    "<li class='list-group-item'>" +
+                                        "Description: " + weatherList.weather[0].description +
+                                    "</li>" +
+                                    "<li class='list-group-item'>" +
+                                        "Humidity: " + weatherList.main.humidity +
+                                    "</li>" +
+                                    "<li class='list-group-item'>" +
+                                        "Wind: " + weatherList.wind.speed +
+                                    "</li>" +
+                                    "<li class='list-group-item'>" +
+                                        "Pressure: " + weatherList.main.pressure +
+                                    "</li>" +
+                                "</ul>" +
+                            "</div>" +
                         "</div>";
 
                 $('#weather-forecast').append(generatedHTML);
@@ -163,20 +191,22 @@
 
             lngLat = marker.getLngLat();
 
-            console.log(lngLat);
-            console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
+            // console.log(lngLat);
+            // console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
             getForecastByCoord(lngLat.lat, lngLat.lng);
         }
         marker.on('dragend', onDragEnd);
 
         var coordinateUrl = "https://api.openweathermap.org/data/2.5/forecast?";
 
+        var coordCityHTML = "";
         var coordinateHTML = "";
 
 
         function getForecastByCoord (latitude, longitude) {
             console.log(latitude);
             console.log(longitude);
+
             $.get(coordinateUrl, {
                 "APPID": OWM_KEY,
                 "lat": latitude,
@@ -185,16 +215,21 @@
             }).done(function (data) {
                 console.log(data);
 
+                $('#weather-forecast').empty();
                 $('#coordinate-forecast').empty();
 
+                $('#city-name').empty();
+                var coordCity = data.city.name;
+                console.log("City: " + coordCity);
+                coordCityHTML = "<span>" + coordCity + "</span>";
+
                 for (var x = 3; x < 40; x += 8) {
-                    console.log('for loop iteration #' + x);
-                    console.log(data.list[x]);
+                    // console.log('for loop iteration #' + x);
+                    // console.log(data.list[x]);
 
                     var coordWeatherList = data.list[x];
                     var coordTimeArray = coordWeatherList.dt_txt;
                     var coordDateOnly = (coordTimeArray.split(' ')).shift();
-
 
                     coordinateHTML =
                         "<div class='card' style='width: 18rem;'>" +
@@ -235,7 +270,9 @@
                         "</div>";
 
                     $('#coordinate-forecast').append(coordinateHTML);
+
                 }
+                $('#city-name').append(coordCityHTML);
 
             }).fail(function (error) {
                 console.error(error);
@@ -247,6 +284,6 @@
         // });
 
     });
-</script>
+    </script>
 </body>
 </html>
