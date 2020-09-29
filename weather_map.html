@@ -14,40 +14,46 @@
 </head>
 <body>
     <main class="container">
-        <h1>Weather App</h1>
-        <br>
-        <h2>Current Weather In Dallas, TX</h2>
-        <table id="weather-current" border="1">
-            <tbody>
-            <tr>
-                <td id="temp">
-                </td>
-            </tr>
-            <tr>
-                <td>Description: <span id="description"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>Humidity: <span id="humidity"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>Wind: <span id="speed"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>Pressure: <span id="pressure"></span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<!--        <h1>Weather App</h1>-->
+<!--        <br>-->
+<!--        <h2>Current Weather In Dallas, TX</h2>-->
+<!--        <table id="weather-current" border="1">-->
+<!--            <tbody>-->
+<!--            <tr>-->
+<!--                <td id="temp">-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Description: <span id="description"></span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Humidity: <span id="humidity"></span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Wind: <span id="speed"></span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Pressure: <span id="pressure"></span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
         <br>
         <nav class="navbar navbar-primary bg-primary text-white">
             <h4>Five Day Forecast</h4>
             <h5>Current City: <span id="city-name">Dallas</span></h5>
         </nav>
         <br>
+        <div>
+            <input type="text" name="city" id="city" placeholder="Enter A City">
+            <button id="submit-city" class="btn btn-primary">Place</button>
+            <span id="error"></span>
+        </div>
 <!--        <h2>Five Day Forecast In Dallas, TX</h2>-->
+        <br>
         <div id="weather-forecast" class="card-deck">
         </div>
         <br>
@@ -121,6 +127,18 @@
             }).fail(function (error) {
                 console.error(error);
             });
+
+    // Search for a city 5 - day forecast
+
+    $('#submit-city').click(function(){
+        var city = $('#city').val();
+
+        if (city !== '') {
+
+        }else{
+            $('#error').html('Please Fill In A City Name.');
+        }
+    });
 
      // 5-day forecast or Dallas, TX
 
