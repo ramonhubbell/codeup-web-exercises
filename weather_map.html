@@ -134,7 +134,75 @@
         var city = $('#city').val();
 
         if (city !== '') {
+            var url = "https://api.openweathermap.org/data/2.5//forecast?";
+            var HTML = "";
 
+            $.get(url, {
+                    "APPID": OWM_KEY,
+                    "q": city,
+                    "units": "imperial",
+                }
+            ).done(function (data) {
+                console.log(data);
+
+                $('#weather-forecast').empty();
+                $('#coordinate-forecast').empty();
+
+                $('#city-name').empty();
+                var coordCity = data.city.name;
+                console.log("City: " + coordCity);
+                coordCityHTML = "<span>" + coordCity + "</span>";
+
+                for (var x = 3; x < 40; x += 8) {
+                    // console.log('for loop iteration #' + x);
+                    // console.log(data.list[x]);
+
+                    var weatherList = data.list[x];
+                    var timeArray = weatherList.dt_txt;
+                    var dateOnly = (timeArray.split(' ')).shift();
+
+                    generatedHTML =
+                        "<div class='card' style='width: 18rem;'>" +
+                        "<div class='card-header text-center'>" +
+                        dateOnly +
+                        "</div>" +
+                        "<div class='card-body'>" +
+                        "<ul class='list-group list-group-flush'>" +
+                        "<li class='list-group-item column'>" +
+                        "<div class='row justify-content-center'>" +
+                        weatherList.main.temp_max +
+                        "<span>" +
+                        "&#8457;" +
+                        "</span>" +
+                        "</div>" +
+                        "<div class='row justify-content-center'>" +
+                        "<img src='http://openweathermap.org/img/w/" +
+                        weatherList.weather[0].icon + ".png'>" +
+                        "</div>" +
+                        "</li>" +
+                        "<li class='list-group-item'>" +
+                        "Description: " + weatherList.weather[0].description +
+                        "</li>" +
+                        "<li class='list-group-item'>" +
+                        "Humidity: " + weatherList.main.humidity +
+                        "</li>" +
+                        "<li class='list-group-item'>" +
+                        "Wind: " + weatherList.wind.speed +
+                        "</li>" +
+                        "<li class='list-group-item'>" +
+                        "Pressure: " + weatherList.main.pressure +
+                        "</li>" +
+                        "</ul>" +
+                        "</div>" +
+                        "</div>";
+
+                    $('#weather-forecast').append(generatedHTML);
+
+                }
+                $('#city-name').append(coordCityHTML);
+            }).fail(function (error) {
+                console.error(error);
+            });
         }else{
             $('#error').html('Please Fill In A City Name.');
         }
