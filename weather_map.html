@@ -49,7 +49,7 @@
         <br>
         <div>
             <input type="text" name="city" id="city" placeholder="Enter A City">
-            <button id="submit-city" class="btn btn-primary">Place</button>
+            <button id="submit-city" class="btn btn-primary">Find</button>
             <span id="error"></span>
         </div>
 <!--        <h2>Five Day Forecast In Dallas, TX</h2>-->
@@ -131,6 +131,31 @@
     // Search for a city 5 - day forecast
 
     $('#submit-city').click(function(){
+
+        // var marker = new mapboxgl.Marker();
+        // var latitude = setLngLat.lat;
+        // var longitude = setLngLat.lon;
+        // function animateMarker(timestamp) {
+            // var radius = 20;
+
+// Update the data to a new position based on the animation timestamp. The
+// divisor in the expression `timestamp / 1000` controls the animation speed.
+//             marker.setLngLat([
+                // Math.cos(timestamp / 1000) * radius,
+                // Math.sin(timestamp / 1000) * radius
+                // latitude, longitude
+            // ]);
+
+// Ensure it's added to the map. This is safe to call if it's already added.
+//             marker.addTo(map);
+
+// Request the next frame of the animation.
+//             requestAnimationFrame(animateMarker);
+//         }
+
+        // Start the animation.
+        // requestAnimationFrame(animateMarker);
+
         var city = $('#city').val();
 
         if (city !== '') {
@@ -150,8 +175,16 @@
 
                 $('#city-name').empty();
                 var coordCity = data.city.name;
+                var coordLat = data.city.coord.lat;
+                var coordLon = data.city.coord.lon;
                 console.log("City: " + coordCity);
+                console.log("Latitude: " + coordLat);
+                console.log("Longitude: " + coordLon);
                 coordCityHTML = "<span>" + coordCity + "</span>";
+
+                var marker = new mapboxgl.Marker()
+                    .setLngLat([coordLon, coordLat])
+                    .addTo(map);
 
                 for (var x = 3; x < 40; x += 8) {
                     // console.log('for loop iteration #' + x);
