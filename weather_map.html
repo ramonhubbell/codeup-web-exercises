@@ -182,7 +182,9 @@
                 console.log("Longitude: " + coordLon);
                 coordCityHTML = "<span>" + coordCity + "</span>";
 
-                var marker = new mapboxgl.Marker()
+                var marker = new mapboxgl.Marker({
+                        draggable: true
+                })
                     .setLngLat([coordLon, coordLat])
                     .addTo(map);
 
@@ -307,11 +309,7 @@
         // 5-day forecast from any coordinates
         var lngLat;
         function onDragEnd() {
-
             lngLat = marker.getLngLat();
-
-            // console.log(lngLat);
-            // console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
             getForecastByCoord(lngLat.lat, lngLat.lng);
         }
         marker.on('dragend', onDragEnd);
