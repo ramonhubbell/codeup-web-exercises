@@ -79,6 +79,7 @@
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
             zoom: 11,
+            // center: [coordLon, coordLat]
             center: [-96.798685, 32.781214]
         });
 
@@ -158,20 +159,37 @@
                 console.log("Longitude: " + coordLon);
                 coordCityHTML = "<span>" + coordCity + "</span>";
 
-                marker.remove();
+                // markers saved here
+                // var currentMarkers=[];
 
-                var marker = new mapboxgl.Marker({
+                // tmp marker
+                var oneMarker = new mapboxgl.Marker({
                         draggable: true
                 })
                     .setLngLat([coordLon, coordLat])
                     .addTo(map);
 
+//                 var oneMarker= new mapboxgl.Marker(currentMarkerDiv)
+//                     .setLngLat(marker.geometry.coordinates)
+//                     .addTo(mapboxMap);
+
+// save tmp marker into currentMarkers
+//                 currentMarkers.push(oneMarker);
+
+
+// remove markers
+//                 if (currentMarkers!==null) {
+//                     for (var i = currentMarkers.length - 1; i >= 0; i--) {
+//                         currentMarkers[i].remove();
+//                     }
+//                 }
+
                 var lngLat;
                 function onDragEnd() {
-                    lngLat = marker.getLngLat();
+                    lngLat = oneMarker.getLngLat();
                     getForecastByCoord(lngLat.lat, lngLat.lng);
                 }
-                marker.on('dragend', onDragEnd);
+                oneMarker.on('dragend', onDragEnd);
 
                 for (var x = 3; x < 40; x += 8) {
                     // console.log('for loop iteration #' + x);
