@@ -70,7 +70,7 @@
         <div id="coordinate-forecast" class="card-deck">
         </div>
         <br>
-        <div id='map' style='width: 1100px; height: 900px;'>
+        <div id='map' style='width: 1100px; height: 700px;'>
         </div>
         <br>
     <script>
@@ -78,7 +78,7 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 9,
+            zoom: 11,
             center: [-96.798685, 32.781214]
         });
 
@@ -132,30 +132,6 @@
 
     $('#submit-city').click(function(){
 
-        // var marker = new mapboxgl.Marker();
-        // var latitude = setLngLat.lat;
-        // var longitude = setLngLat.lon;
-        // function animateMarker(timestamp) {
-            // var radius = 20;
-
-// Update the data to a new position based on the animation timestamp. The
-// divisor in the expression `timestamp / 1000` controls the animation speed.
-//             marker.setLngLat([
-                // Math.cos(timestamp / 1000) * radius,
-                // Math.sin(timestamp / 1000) * radius
-                // latitude, longitude
-            // ]);
-
-// Ensure it's added to the map. This is safe to call if it's already added.
-//             marker.addTo(map);
-
-// Request the next frame of the animation.
-//             requestAnimationFrame(animateMarker);
-//         }
-
-        // Start the animation.
-        // requestAnimationFrame(animateMarker);
-
         var city = $('#city').val();
 
         if (city !== '') {
@@ -182,11 +158,20 @@
                 console.log("Longitude: " + coordLon);
                 coordCityHTML = "<span>" + coordCity + "</span>";
 
+                marker.remove();
+
                 var marker = new mapboxgl.Marker({
                         draggable: true
                 })
                     .setLngLat([coordLon, coordLat])
                     .addTo(map);
+
+                var lngLat;
+                function onDragEnd() {
+                    lngLat = marker.getLngLat();
+                    getForecastByCoord(lngLat.lat, lngLat.lng);
+                }
+                marker.on('dragend', onDragEnd);
 
                 for (var x = 3; x < 40; x += 8) {
                     // console.log('for loop iteration #' + x);
