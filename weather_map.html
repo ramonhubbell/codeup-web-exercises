@@ -160,14 +160,26 @@
                 coordCityHTML = "<span>" + coordCity + "</span>";
 
                 // markers saved here
-                // var currentMarkers=[];
+                var currentMarkers=[];
+                console.log("currentMarkers: " + currentMarkers.length);
+                currentMarkers.push(marker);
+                console.log("currentMarkers after push: " + currentMarkers.length);
+                currentMarkers[0].remove();
+                console.log("currentMarkers after removing first marker: " + currentMarkers.length);
 
                 // tmp marker
-                var oneMarker = new mapboxgl.Marker({
+                var marker = new mapboxgl.Marker({
                         draggable: true
                 })
                     .setLngLat([coordLon, coordLat])
                     .addTo(map);
+
+                currentMarkers.push(marker);
+                console.log("currentMarkers after pushing oneMarker: " + currentMarkers.length);
+                // currentMarkers[0].remove();
+                // console.log("currentMarkers after removing first marker: " + currentMarkers.length);
+                // currentMarkers.shift();
+                // console.log("currentMarkers after deleting first marker: " + currentMarkers.length);
 
 //                 var oneMarker= new mapboxgl.Marker(currentMarkerDiv)
 //                     .setLngLat(marker.geometry.coordinates)
@@ -175,6 +187,7 @@
 
 // save tmp marker into currentMarkers
 //                 currentMarkers.push(oneMarker);
+//                 console.log("currentMarkers after push: " + currentMarkers[0]);
 
 
 // remove markers
@@ -186,10 +199,10 @@
 
                 var lngLat;
                 function onDragEnd() {
-                    lngLat = oneMarker.getLngLat();
+                    lngLat = marker.getLngLat();
                     getForecastByCoord(lngLat.lat, lngLat.lng);
                 }
-                oneMarker.on('dragend', onDragEnd);
+                marker.on('dragend', onDragEnd);
 
                 for (var x = 3; x < 40; x += 8) {
                     // console.log('for loop iteration #' + x);
