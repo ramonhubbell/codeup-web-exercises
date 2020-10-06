@@ -14,40 +14,46 @@
 </head>
 <body>
     <main class="container">
-        <h1>Weather App</h1>
-        <br>
-        <h2>Current Weather In Dallas, TX</h2>
-        <table id="weather-current" border="1">
-            <tbody>
-            <tr>
-                <td id="temp">
-                </td>
-            </tr>
-            <tr>
-                <td>Description: <span id="description"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>Humidity: <span id="humidity"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>Wind: <span id="speed"></span>
-                </td>
-            </tr>
-            <tr>
-                <td>Pressure: <span id="pressure"></span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<!--        <h1>Weather App</h1>-->
+<!--        <br>-->
+<!--        <h2>Current Weather In Dallas, TX</h2>-->
+<!--        <table id="weather-current" border="1">-->
+<!--            <tbody>-->
+<!--            <tr>-->
+<!--                <td id="temp">-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Description: <span id="description"></span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Humidity: <span id="humidity"></span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Wind: <span id="speed"></span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Pressure: <span id="pressure"></span>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
         <br>
         <nav class="navbar navbar-primary bg-primary text-white">
             <h4>Five Day Forecast</h4>
             <h5>Current City: <span id="city-name">Dallas</span></h5>
         </nav>
         <br>
+        <div>
+            <input type="text" name="city" id="city" placeholder="Enter A City">
+            <button id="submit-city" class="btn btn-primary">Find</button>
+            <span id="error"></span>
+        </div>
 <!--        <h2>Five Day Forecast In Dallas, TX</h2>-->
+        <br>
         <div id="weather-forecast" class="card-deck">
         </div>
         <br>
@@ -64,7 +70,7 @@
         <div id="coordinate-forecast" class="card-deck">
         </div>
         <br>
-        <div id='map' style='width: 1100px; height: 900px;'>
+        <div id='map' style='width: 1100px; height: 700px;'>
         </div>
         <br>
     <script>
@@ -72,7 +78,8 @@
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 9,
+            zoom: 11,
+            // center: [coordLon, coordLat]
             center: [-96.798685, 32.781214]
         });
 
@@ -121,6 +128,136 @@
             }).fail(function (error) {
                 console.error(error);
             });
+
+    // Search for a city 5 - day forecast
+
+    $('#submit-city').click(function(){
+
+        var city = $('#city').val();
+
+        if (city !== '') {
+            var url = "https://api.openweathermap.org/data/2.5//forecast?";
+            var HTML = "";
+
+            $.get(url, {
+                    "APPID": OWM_KEY,
+                    "q": city,
+                    "units": "imperial",
+                }
+            ).done(function (data) {
+                console.log(data);
+
+                $('#weather-forecast').empty();
+                $('#coordinate-forecast').empty();
+
+                $('#city-name').empty();
+                var coordCity = data.city.name;
+                var coordLat = data.city.coord.lat;
+                var coordLon = data.city.coord.lon;
+                console.log("City: " + coordCity);
+                console.log("Latitude: " + coordLat);
+                console.log("Longitude: " + coordLon);
+                coordCityHTML = "<span>" + coordCity + "</span>";
+
+                // markers saved here
+                var currentMarkers=[];
+                console.log("currentMarkers: " + currentMarkers.length);
+                currentMarkers.push(marker);
+                console.log("currentMarkers after push: " + currentMarkers.length);
+                currentMarkers[0].remove();
+                console.log("currentMarkers after removing first marker: " + currentMarkers.length);
+
+                // tmp marker
+                var marker = new mapboxgl.Marker({
+                        draggable: true
+                })
+                    .setLngLat([coordLon, coordLat])
+                    .addTo(map);
+
+                currentMarkers.push(marker);
+                console.log("currentMarkers after pushing oneMarker: " + currentMarkers.length);
+                // currentMarkers[0].remove();
+                // console.log("currentMarkers after removing first marker: " + currentMarkers.length);
+                // currentMarkers.shift();
+                // console.log("currentMarkers after deleting first marker: " + currentMarkers.length);
+
+//                 var oneMarker= new mapboxgl.Marker(currentMarkerDiv)
+//                     .setLngLat(marker.geometry.coordinates)
+//                     .addTo(mapboxMap);
+
+// save tmp marker into currentMarkers
+//                 currentMarkers.push(oneMarker);
+//                 console.log("currentMarkers after push: " + currentMarkers[0]);
+
+
+// remove markers
+//                 if (currentMarkers!==null) {
+//                     for (var i = currentMarkers.length - 1; i >= 0; i--) {
+//                         currentMarkers[i].remove();
+//                     }
+//                 }
+
+                var lngLat;
+                function onDragEnd() {
+                    lngLat = marker.getLngLat();
+                    getForecastByCoord(lngLat.lat, lngLat.lng);
+                }
+                marker.on('dragend', onDragEnd);
+
+                for (var x = 3; x < 40; x += 8) {
+                    // console.log('for loop iteration #' + x);
+                    // console.log(data.list[x]);
+
+                    var weatherList = data.list[x];
+                    var timeArray = weatherList.dt_txt;
+                    var dateOnly = (timeArray.split(' ')).shift();
+
+                    generatedHTML =
+                        "<div class='card' style='width: 18rem;'>" +
+                        "<div class='card-header text-center'>" +
+                        dateOnly +
+                        "</div>" +
+                        "<div class='card-body'>" +
+                        "<ul class='list-group list-group-flush'>" +
+                        "<li class='list-group-item column'>" +
+                        "<div class='row justify-content-center'>" +
+                        weatherList.main.temp_max +
+                        "<span>" +
+                        "&#8457;" +
+                        "</span>" +
+                        "</div>" +
+                        "<div class='row justify-content-center'>" +
+                        "<img src='http://openweathermap.org/img/w/" +
+                        weatherList.weather[0].icon + ".png'>" +
+                        "</div>" +
+                        "</li>" +
+                        "<li class='list-group-item'>" +
+                        "Description: " + weatherList.weather[0].description +
+                        "</li>" +
+                        "<li class='list-group-item'>" +
+                        "Humidity: " + weatherList.main.humidity +
+                        "</li>" +
+                        "<li class='list-group-item'>" +
+                        "Wind: " + weatherList.wind.speed +
+                        "</li>" +
+                        "<li class='list-group-item'>" +
+                        "Pressure: " + weatherList.main.pressure +
+                        "</li>" +
+                        "</ul>" +
+                        "</div>" +
+                        "</div>";
+
+                    $('#weather-forecast').append(generatedHTML);
+
+                }
+                $('#city-name').append(coordCityHTML);
+            }).fail(function (error) {
+                console.error(error);
+            });
+        }else{
+            $('#error').html('Please Fill In A City Name.');
+        }
+    });
 
      // 5-day forecast or Dallas, TX
 
@@ -188,11 +325,7 @@
         // 5-day forecast from any coordinates
         var lngLat;
         function onDragEnd() {
-
             lngLat = marker.getLngLat();
-
-            // console.log(lngLat);
-            // console.log( 'Longitude: ' + lngLat.lng + ' Latitude: ' + lngLat.lat);
             getForecastByCoord(lngLat.lat, lngLat.lng);
         }
         marker.on('dragend', onDragEnd);
