@@ -115,6 +115,11 @@
             .setLngLat([-96.798685, 32.781214])
             .addTo(map)
 
+        var currentMarkers=[];
+        console.log("currentMarkers: " + currentMarkers.length);
+        currentMarkers.push(marker);
+        console.log("currentMarkers after pushing oneMarker: " + currentMarkers.length);
+
     $(document).ready(function(){
         console.log('This page is ready.');
 
@@ -174,14 +179,6 @@
                 console.log("Longitude: " + coordLon);
                 coordCityHTML = "<span>" + coordCity + "</span>";
 
-                // markers saved here
-                // var currentMarkers=[];
-                // console.log("currentMarkers: " + currentMarkers.length);
-                // currentMarkers.push(marker);
-                // console.log("currentMarkers after push: " + currentMarkers.length);
-                // currentMarkers[0].remove();
-                // console.log("currentMarkers after removing first marker: " + currentMarkers.length);
-
                 // tmp marker
                 var marker = new mapboxgl.Marker({
                         draggable: true
@@ -189,30 +186,17 @@
                     .setLngLat([coordLon, coordLat])
                     .addTo(map);
 
-                var currentMarkers=[];
-                console.log("currentMarkers: " + currentMarkers.length);
                 currentMarkers.push(marker);
                 console.log("currentMarkers after pushing oneMarker: " + currentMarkers.length);
-                currentMarkers[0].remove();
-                console.log("currentMarkers after removing first marker: " + currentMarkers.length);
-                // currentMarkers.shift();
-                // console.log("currentMarkers after deleting first marker: " + currentMarkers.length);
-
-//                 var oneMarker= new mapboxgl.Marker(currentMarkerDiv)
-//                     .setLngLat(marker.geometry.coordinates)
-//                     .addTo(mapboxMap);
-
-// save tmp marker into currentMarkers
-//                 currentMarkers.push(oneMarker);
-//                 console.log("currentMarkers after push: " + currentMarkers[0]);
-
 
 // remove markers
-//                 if (currentMarkers!==null) {
-//                     for (var i = currentMarkers.length - 1; i >= 0; i--) {
-//                         currentMarkers[i].remove();
-//                     }
-//                 }
+                if (currentMarkers !== null) {
+                    for (var i = currentMarkers.length - 1; i >= 0; i--) {
+                        currentMarkers[currentMarkers.length - 2].remove();
+                        console.log("currentMarkers[i]: " + currentMarkers[i]);
+                    }
+                }
+                console.log("currentMarkers after for loop: " + currentMarkers.length);
 
                 var lngLat;
                 function onDragEnd() {
