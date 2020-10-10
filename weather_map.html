@@ -194,6 +194,7 @@
                     .setLngLat([coordLon, coordLat])
                     .addTo(map);
 
+                var startNext = [coordLon, coordLat];
                 var end = [coordLon, coordLat];
                 console.log("end: " + end);
 
@@ -211,7 +212,7 @@
 
                 // depending on whether we're currently at point a or b, aim for
                 // point a or b
-                var target = isAtStart ? end : start;
+                var target = isAtStart ? end : startNext;
 
                 // and now we're at the opposite point
                 isAtStart = !isAtStart;
