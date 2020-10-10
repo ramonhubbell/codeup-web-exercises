@@ -100,14 +100,22 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
     <script>
+
+        // var coordLat = data.city.coord.lat;
+        // var coordLon = data.city.coord.lon;
         mapboxgl.accessToken = MAP_KEY;
+        var start = [-96.798685, 32.781214];
+        // var end = [coordLon, coordLat];
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v9',
-            zoom: 11,
+            zoom: 13,
             // center: [coordLon, coordLat]
-            center: [-96.798685, 32.781214]
+            // center: [-96.798685, 32.781214]
+            center: start,
         });
+
+        var isAtStart = true;
 
         var marker = new mapboxgl.Marker({
             draggable: true
@@ -186,10 +194,13 @@
                     .setLngLat([coordLon, coordLat])
                     .addTo(map);
 
+                var end = [coordLon, coordLat];
+                console.log("end: " + end);
+
                 currentMarkers.push(marker);
                 console.log("currentMarkers after pushing oneMarker: " + currentMarkers.length);
 
-// remove markers
+                // remove markers
                 if (currentMarkers !== null) {
                     for (var i = currentMarkers.length - 1; i >= 0; i--) {
                         currentMarkers[currentMarkers.length - 2].remove();
@@ -197,6 +208,36 @@
                     }
                 }
                 console.log("currentMarkers after for loop: " + currentMarkers.length);
+
+                // depending on whether we're currently at point a or b, aim for
+                // point a or b
+                var target = isAtStart ? end : start;
+
+                // and now we're at the opposite point
+                isAtStart = !isAtStart;
+
+                map.flyTo({
+                // These options control the ending camera position: centered at
+                // the target, at zoom level 9, and north up.
+                    center: target,
+                    zoom: 13,
+                    bearing: 0,
+
+                // These options control the flight curve, making it move
+                // slowly and zoom out almost completely before starting
+                // to pan.
+                    speed: 0.6, // make the flying slow
+                    curve: 1, // change the speed at which it zooms out
+
+                // This can be any easing function: it takes a number between
+                // 0 and 1 and returns another number between 0 and 1.
+                    easing: function (t) {
+                        return t;
+                    },
+
+                // this animation is considered essential with respect to prefers-reduced-motion
+                    essential: true
+                });
 
                 var lngLat;
                 function onDragEnd() {
