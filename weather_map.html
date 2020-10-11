@@ -20,10 +20,11 @@
             <h5>Current City: <span id="city-name">Dallas</span></h5>
         </nav>
         <br>
+        <div id="error"></div>
+        <br>
         <div>
             <input type="text" name="city" id="city" placeholder="Enter A City">
             <button id="submit-city" class="btn btn-primary">Find</button>
-            <span id="error"></span>
         </div>
         <br>
         <div id="weather-forecast" class="card-deck">
@@ -230,7 +231,9 @@
                 console.error(error);
             });
         }else{
-            $('#error').html('Please Fill In A City Name.');
+            $("#error").html
+            ("<div class='alert alert-danger text-center' role='alert' style='font-size: large; width: 50%; margin: auto'>" +
+                "Please Fill In A City Name!</div>").delay(3000).fadeOut();
         }
     });
 
