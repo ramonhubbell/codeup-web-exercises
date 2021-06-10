@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>ACTB Connection Portal</title>
+    <style>
+        body {
+            background: #EED426;
+        }
+
+        h1 {
+            color: #006666;
+            font-family: verdana;
+            text-align: center;
+        }
+
+        table, th, td{
+            border: 1px solid black;
+        }
+
+        .theader {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form id="calculatorForm">
+        <h1>ACTB Connection Portal</h1>
+        <h4>Customer Name
+            <span>
+                <input type="text" name="custname" placeholder="Enter the customer name" required>
+            </span>
+        </h4>
+        <h4>Customer Email
+            <span>
+                <input type="text" name="email" placeholder="abc@gmail.com" required>
+            </span>
+        </h4>
+        <h4>Mobile Number
+            <input type="tel" name="mobile" placeholder="Enter the Mobile Number"
+                   pattern="[987]{3}[0-9]{3}[0-9]{4}" required>
+        </h4>
+        <h4>
+            <label for="connectiontype">Type of Broadband</label>
+            <span>
+                <select name="conntype" id="connectiontype" required>
+                    <option value="75" id="Pre">Pre</option>
+                    <option value="150" id="Post">Post</option>
+                </select>
+            </span>
+        </h4>
+        <h4>
+            <label>Type of Broadband</label>
+            <span>
+                <input type="radio" id="scheme1" name="scheme" value="200" required>
+                <label for="scheme1">Local</label>
+                <input type="radio" id="scheme2" name="scheme" value="350" required>
+                <label for="scheme2">STD</label>
+                <input type="radio" id="scheme3" name="scheme" value="500" required>
+                <label for="scheme3">FullTalkTime</label>
+            </span>
+        </h4>
+        <label>Connection Duration</label>
+        <input type="number" name="duration" id="duration" min="1" max="12" required>
+        <br>
+        <div>
+            <button type="button" name="button" onclick="totalMonthlyRentalCost()">Calculate Bill Amount</button>
+            <button type="button" name="clear" onclick="clearForm()">Reset</button>
+        </div>
+        <div name="result" id="result"></div>
+        <table id="rentalcost">
+            <caption>Rental Cost Table</caption>
+            <tr class="theader" >
+                <th>Connection Type</th>
+                <th>Call Limit</th>
+                <th>Monthly Rental</th>
+            </tr>
+            <tr class="tr1" >
+                <td>Pre</td>
+                <td>500</td>
+                <td>75</td>
+            </tr>
+            <tr class="tr2">
+                <td>Post</td>
+                <td>Unlimited</td>
+                <td>150</td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+    function clearForm() {
+        document.getElementById("calculatorForm").reset();
+        document.getElementById("result").innerHTML = "";
+    }
+    function totalMonthlyRentalCost() {
+        let select = document.getElementById('connectiontype');
+        let monthlyRental = select.options[select.selectedIndex].value;
+        let scheme1 = document.getElementById("scheme1");
+        let scheme2 = document.getElementById("scheme2");
+        let scheme3 = document.getElementById("scheme3");
+        let durationInput = document.getElementById("duration").value;
+        if(scheme1.checked===true){
+            costPerMonth = scheme1.value;
+        }else if(scheme2.checked===true){
+            costPerMonth = scheme2.value;
+        }else{
+            costPerMonth = scheme3.value;
+        }
+        let totalSum = Number(durationInput * costPerMonth) + Number(monthlyRental);
+        document.getElementById("result").innerHTML = "The Total Monthly Rental Cost is Rs " + totalSum;
+    }
+</script>
+</body>
+</html>
